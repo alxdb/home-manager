@@ -82,7 +82,8 @@
     shellAliases = {
       ll = "ls -l";
       la = "ls -la";
-      cfg = "vi ~/.config/home-manager/home.nix";
+      cfg = "vi ~/.config/home-manager/home.nix && home-manager switch && source $ZDOTDIR/.zshrc";
+      g = "git";
     };
 
     historySubstringSearch = {
@@ -109,11 +110,15 @@
     userName = "Alexander Davidson Bryan";
     userEmail = "alxdb@pm.me";
     aliases = {
-      c = "commit";
       s = "status";
+      c = "commit";
+      ca = "commit -a";
+      b = "checkout -b";
+      d = "difftool";
     };
     extraConfig = {
       init.defaultBranch = "main";
+      diff.tool = "nvimdiff";
     };
   };
 }
