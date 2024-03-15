@@ -82,7 +82,7 @@
     shellAliases = {
       ll = "ls -l";
       la = "ls -la";
-      cfg = "vi ~/.config/home-manager/home.nix && home-manager switch && source $ZDOTDIR/.zshrc";
+      cfg = "vi ~/.config/home-manager/home.nix && home-manager switch";
       g = "git";
     };
 
