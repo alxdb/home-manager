@@ -115,6 +115,7 @@
       ca = "commit -a";
       b = "checkout -b";
       d = "difftool";
+      p = "push";
     };
     extraConfig = {
       init.defaultBranch = "main";
