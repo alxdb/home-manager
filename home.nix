@@ -39,7 +39,9 @@
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'.
   home.sessionVariables = {
-    LANG = "C.UTF-8"; # https://github.com/nix-community/home-manager/issues/3711
+    # https://github.com/nix-community/home-manager/issues/3711
+    LANG = "C.UTF-8";
+    GOPATH = "$HOME/.local/go";
   };
 
   # Let Home Manager install and manage itself.
@@ -74,19 +76,17 @@
     vimAlias = true;
 
     extraPackages = [
+      # Treesitter deps 
       pkgs.tree-sitter
-      pkgs.ripgrep
-      pkgs.fd
       pkgs.gcc
       pkgs.nodejs
-      pkgs.unzip
-      pkgs.wget
-      pkgs.go
-      pkgs.cargo
-      pkgs.luarocks
-      pkgs.jdk17
-      pkgs.julia
-      pkgs.python3
+      # Telescope deps
+      pkgs.ripgrep
+      pkgs.fd
+      # Language Tools
+      pkgs.nixfmt
+      pkgs.nil
+      pkgs.stylua
     ];
   };
   home.file."./.config/nvim/" = {
@@ -114,9 +114,7 @@
   };
   programs.gh = {
     enable = true;
-    settings = {
-      git_protocol = "ssh";
-    };
+    settings = { git_protocol = "ssh"; };
   };
   programs.ssh.enable = true;
   services.ssh-agent.enable = true;
