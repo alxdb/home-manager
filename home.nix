@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-unstable, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -63,7 +63,7 @@
   #  /etc/profiles/per-user/nixos/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "nvim";
+    LANG = "C.UTF-8"; # https://github.com/nix-community/home-manager/issues/3711
   };
 
   # Let Home Manager install and manage itself.
@@ -76,6 +76,7 @@
     enableCompletion = true;
     enableAutosuggestions = true;
     syntaxHighlighting.enable = true;
+    historySubstringSearch.enable = true;
 
     defaultKeymap = "viins";
 
@@ -84,10 +85,6 @@
       la = "ls -la";
       cfg = "vi ~/.config/home-manager/home.nix && home-manager switch";
       g = "git";
-    };
-
-    historySubstringSearch = {
-      enable = true;
     };
   };
 
@@ -98,6 +95,14 @@
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
+
+    extraPackages = [
+      pkgs.tree-sitter
+      pkgs.ripgrep
+      pkgs.fd
+      pkgs.gcc
+      pkgs.nodejs
+    ];
   };
 
   home.file."./.config/nvim/" = {
@@ -131,6 +136,5 @@
   };
 
   programs.ssh.enable = true;
-
   services.ssh-agent.enable = true;
 }
