@@ -26,9 +26,11 @@ return {
     event = "VeryLazy",
     opts = {
       lsp = {
-        ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-        ["vim.lsp.util.stylize_markdown"] = true,
-        ["cmp.entry.get_documentation"] = true,
+        override = {
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+          ["vim.lsp.util.stylize_markdown"] = true,
+          ["cmp.entry.get_documentation"] = true,
+        },
       },
     },
     dependencies = {
@@ -40,7 +42,6 @@ return {
     "lewis6991/gitsigns.nvim",
     dependencies = { "folke/which-key.nvim" },
     opts = {
-      yadm = { enable = true },
       on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
         local wk = require("which-key")

@@ -79,6 +79,14 @@
       pkgs.fd
       pkgs.gcc
       pkgs.nodejs
+      pkgs.unzip
+      pkgs.wget
+      pkgs.go
+      pkgs.cargo
+      pkgs.luarocks
+      pkgs.jdk17
+      pkgs.julia
+      pkgs.python3
     ];
   };
   home.file."./.config/nvim/" = {
