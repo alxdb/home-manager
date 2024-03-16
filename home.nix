@@ -120,4 +120,18 @@
   };
   programs.ssh.enable = true;
   services.ssh-agent.enable = true;
+
+  # Tmux 
+  programs.tmux = {
+    enable = true;
+    terminal = "tmux-256color";
+    sensibleOnTop = true;
+    shortcut = "a";
+    keyMode = "vi";
+    customPaneNavigationAndResize = true;
+    reverseSplit = true;
+    extraConfig = ''
+      set -ag terminal-overrides ",xterm-256color:RGB"
+    '';
+  };
 }
