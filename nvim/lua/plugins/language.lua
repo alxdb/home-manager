@@ -32,7 +32,20 @@ return {
 
 			local lspconfig = require("lspconfig")
 			-- nix lsp
-			lspconfig.nil_ls.setup({})
+			lspconfig.nil_ls.setup({
+				settings = {
+					["nil"] = {
+						formatting = {
+							command = { "nixfmt" },
+						},
+					},
+					nix = {
+						flake = {
+							autoArchive = true,
+						},
+					},
+				},
+			})
 
 			-- lua/neovim lsp
 			require("neodev").setup({})
@@ -60,7 +73,6 @@ return {
 			local null_ls = require("null-ls")
 			null_ls.setup({
 				sources = {
-					null_ls.builtins.formatting.nixfmt,
 					null_ls.builtins.formatting.stylua,
 				},
 			})
