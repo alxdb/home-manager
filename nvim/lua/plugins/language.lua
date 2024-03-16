@@ -20,6 +20,7 @@ return {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/nvim-cmp",
 			"L3MON4D3/LuaSnip",
+			"folke/neodev.nvim",
 		},
 		config = function()
 			local lsp_zero = require("lsp-zero")
@@ -30,7 +31,26 @@ return {
 			lsp_zero.on_attach(on_attach)
 
 			local lspconfig = require("lspconfig")
+			-- nix lsp
 			lspconfig.nil_ls.setup({})
+
+			-- lua/neovim lsp
+			require("neodev").setup({})
+			lspconfig.lua_ls.setup({
+				settings = {
+					Lua = {
+						completion = {
+							callSnippet = "Replace",
+						},
+						format = {
+							enable = false,
+						},
+					},
+				},
+			})
+
+			-- vscode lsps
+			lspconfig.jsonls.setup({})
 		end,
 	},
 	{

@@ -87,6 +87,8 @@
       pkgs.nixfmt
       pkgs.nil
       pkgs.stylua
+      pkgs.lua-language-server
+      pkgs.vscode-langservers-extracted
     ];
   };
   home.file."./.config/nvim/" = {
