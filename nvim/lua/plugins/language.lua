@@ -62,8 +62,16 @@ return {
 				},
 			})
 
-			-- vscode lsps
+			-- data format lsps
 			lspconfig.jsonls.setup({})
+			lspconfig.yamlls.setup({})
+			lspconfig.taplo.setup({})
+
+			-- (type|java)script lsp
+			-- no nixpkgs for these as it should be installed by the project
+			lspconfig.tsserver.setup({})
+			lspconfig.tailwindcss.setup({})
+			lspconfig.eslint.setup({})
 		end,
 	},
 	{
@@ -74,6 +82,9 @@ return {
 			null_ls.setup({
 				sources = {
 					null_ls.builtins.formatting.stylua,
+					null_ls.builtins.formatting.prettierd.with({
+						filetypes = { "css", "yaml" },
+					}),
 				},
 			})
 		end,

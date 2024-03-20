@@ -90,6 +90,9 @@
       pkgs.stylua
       pkgs.lua-language-server
       pkgs.vscode-langservers-extracted
+      pkgs.yaml-language-server
+      pkgs.prettierd
+      pkgs.taplo
     ];
   };
   home.file."./.config/nvim/" = {
