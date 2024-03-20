@@ -122,6 +122,7 @@
       init.defaultBranch = "main";
       diff.tool = "nvimdiff";
     };
+    ignores = [ ".envrc" ".direnv" ];
   };
   programs.gh = {
     enable = true;
