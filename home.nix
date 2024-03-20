@@ -60,18 +60,22 @@
     defaultKeymap = "viins";
 
     shellAliases = {
-      ll = "ls -l";
-      la = "ls -la";
-      cfg = "vi ~/.config/home-manager/home.nix && home-manager switch";
       g = "git";
       cd = "z";
     };
   };
   programs.starship.enable = true;
-  programs.zoxide.enable = true;
+  programs.zoxide = {
+    enable = true;
+    options = [ "--no-cmd" "--cmd" "cd" ];
+  };
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
+  };
+  programs.lsd = {
+    enable = true;
+    enableAliases = true;
   };
 
   # Editor configuration
@@ -100,6 +104,7 @@
       pkgs.taplo
       pkgs.tailwindcss-language-server
       pkgs.nodePackages.typescript-language-server
+      pkgs.gopls
     ];
   };
   home.file."./.config/nvim/" = {

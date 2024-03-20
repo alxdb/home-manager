@@ -72,6 +72,9 @@ return {
 			lspconfig.tailwindcss.setup({})
 			-- no nixpkgs for eslint as it should be installed by the project
 			lspconfig.eslint.setup({})
+
+			-- go
+			lspconfig.gopls.setup({})
 		end,
 	},
 	{
