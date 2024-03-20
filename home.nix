@@ -98,6 +98,8 @@
       pkgs.yaml-language-server
       pkgs.prettierd
       pkgs.taplo
+      pkgs.tailwindcss-language-server
+      pkgs.nodePackages.typescript-language-server
     ];
   };
   home.file."./.config/nvim/" = {

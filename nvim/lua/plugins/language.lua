@@ -68,9 +68,9 @@ return {
 			lspconfig.taplo.setup({})
 
 			-- (type|java)script lsp
-			-- no nixpkgs for these as it should be installed by the project
 			lspconfig.tsserver.setup({})
 			lspconfig.tailwindcss.setup({})
+			-- no nixpkgs for eslint as it should be installed by the project
 			lspconfig.eslint.setup({})
 		end,
 	},
