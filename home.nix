@@ -64,7 +64,14 @@
       la = "ls -la";
       cfg = "vi ~/.config/home-manager/home.nix && home-manager switch";
       g = "git";
+      cd = "z";
     };
+
+    initExtra = ''
+      if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+        exec tmux
+      fi
+    '';
   };
   programs.starship.enable = true;
 
@@ -134,4 +141,6 @@
       set -ag terminal-overrides ",xterm-256color:RGB"
     '';
   };
+
+  programs.zoxide = { enable = true; };
 }
