@@ -47,7 +47,7 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  # Shell configuration (zsh + starship)
+  # Shell configuration
   programs.zsh = {
     enable = true;
     dotDir = ".config/zsh";
@@ -68,8 +68,13 @@
     };
   };
   programs.starship.enable = true;
+  programs.zoxide.enable = true;
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
 
-  # Editor configuration (neovim)
+  # Editor configuration
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -100,7 +105,7 @@
     recursive = true;
   };
 
-  # VCS configuration (git + gh + ssh)
+  # VCS configuration
   programs.git = {
     enable = true;
     userName = "Alexander Davidson Bryan";
@@ -138,6 +143,4 @@
       set -ag terminal-overrides ",xterm-256color:RGB"
     '';
   };
-
-  programs.zoxide = { enable = true; };
 }
