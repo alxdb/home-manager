@@ -147,5 +147,6 @@
     extraConfig = ''
       set -ag terminal-overrides ",xterm-256color:RGB"
     '';
+    plugins = with pkgs; [ tmuxPlugins.nord tmuxPlugins.prefix-highlight ];
   };
 }
