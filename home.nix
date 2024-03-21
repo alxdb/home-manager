@@ -62,6 +62,7 @@
     shellAliases = { g = "git"; };
   };
   programs.starship.enable = true;
+  home.file."./.config/starship.toml" = { source = ./starship.toml; };
   programs.zoxide = {
     enable = true;
     options = [ "--cmd" "cd" ];
