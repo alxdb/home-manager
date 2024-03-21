@@ -102,6 +102,8 @@
       pkgs.tailwindcss-language-server
       pkgs.nodePackages.typescript-language-server
       pkgs.gopls
+      pkgs.buf-language-server
+      pkgs.buf
     ];
   };
   home.file."./.config/nvim/" = {

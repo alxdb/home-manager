@@ -75,6 +75,7 @@ return {
 
 			-- go
 			lspconfig.gopls.setup({})
+			lspconfig.bufls.setup({})
 		end,
 	},
 	{
@@ -88,6 +89,8 @@ return {
 					null_ls.builtins.formatting.prettierd.with({
 						filetypes = { "css", "yaml" },
 					}),
+					null_ls.builtins.diagnostics.buf,
+					null_ls.builtins.formatting.buf,
 				},
 			})
 		end,
