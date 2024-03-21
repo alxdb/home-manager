@@ -59,7 +59,10 @@
 
     defaultKeymap = "viins";
 
-    shellAliases = { g = "git"; };
+    shellAliases = {
+      g = "git";
+      lg = "lazygit";
+    };
   };
   programs.starship.enable = true;
   home.file."./.config/starship.toml" = { source = ./starship.toml; };
@@ -137,6 +140,7 @@
   };
   programs.ssh.enable = true;
   services.ssh-agent.enable = true;
+  programs.lazygit.enable = true;
 
   # Tmux 
   programs.tmux = {
