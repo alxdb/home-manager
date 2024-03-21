@@ -59,15 +59,12 @@
 
     defaultKeymap = "viins";
 
-    shellAliases = {
-      g = "git";
-      cd = "z";
-    };
+    shellAliases = { g = "git"; };
   };
   programs.starship.enable = true;
   programs.zoxide = {
     enable = true;
-    options = [ "--no-cmd" "--cmd" "cd" ];
+    options = [ "--cmd" "cd" ];
   };
   programs.direnv = {
     enable = true;
