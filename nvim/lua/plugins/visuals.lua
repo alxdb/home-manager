@@ -2,7 +2,19 @@ return {
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
-		config = true,
+		opts = {
+			defaults = {
+				mode = { "n", "v" },
+				["<leader>f"] = { name = "files" },
+				["<leader>b"] = { name = "buffers" },
+				["<leader>g"] = { name = "git" },
+			},
+		},
+		config = function(_, opts)
+			local wk = require("which-key")
+			wk.setup(opts)
+			wk.register(opts.defaults)
+		end,
 	},
 	{
 		"gbprod/nord.nvim",
@@ -67,7 +79,7 @@ return {
 
 				wk.register({
 					s = {
-						name = "gitsigns",
+						name = "signs",
 						s = { gs.stage_hunk, "stage hunk" },
 						S = { gs.stage_buffer, "stage buffer" },
 						r = { gs.reset_hunk, "reset hunk" },
