@@ -62,6 +62,9 @@
     shellAliases = {
       g = "git";
       lg = "lazygit";
+      vf = ''
+        vi +':lua require("telescope.builtin").find_files()'
+      '';
     };
   };
   programs.starship.enable = true;
