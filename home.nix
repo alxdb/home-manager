@@ -118,6 +118,7 @@
       pkgs.nodePackages.purescript-language-server
       pkgs.dhall-lsp-server
       pkgs.rust-analyzer
+      pkgs.rustc
       pkgs.rustfmt
     ];
   };
