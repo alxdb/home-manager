@@ -115,6 +115,8 @@
       pkgs.gopls
       pkgs.buf-language-server
       pkgs.buf
+      pkgs.nodePackages.purescript-language-server
+      pkgs.dhall-lsp-server
     ];
   };
   home.file."./.config/nvim/" = {

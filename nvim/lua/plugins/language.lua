@@ -76,6 +76,10 @@ return {
 			-- go
 			lspconfig.gopls.setup({})
 			lspconfig.bufls.setup({})
+
+			-- purescript
+			lspconfig.purescriptls.setup({})
+			lspconfig.dhall_lsp_server.setup({})
 		end,
 	},
 	{
@@ -95,4 +99,5 @@ return {
 			})
 		end,
 	},
+	{ "purescript-contrib/purescript-vim" },
 }
