@@ -80,6 +80,9 @@ return {
 			-- purescript
 			lspconfig.purescriptls.setup({})
 			lspconfig.dhall_lsp_server.setup({})
+
+			-- rust
+			lspconfig.rust_analyzer.setup({})
 		end,
 	},
 	{

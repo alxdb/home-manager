@@ -117,6 +117,8 @@
       pkgs.buf
       pkgs.nodePackages.purescript-language-server
       pkgs.dhall-lsp-server
+      pkgs.rust-analyzer
+      pkgs.rustfmt
     ];
   };
   home.file."./.config/nvim/" = {
