@@ -17,7 +17,10 @@ return {
 		end,
 	},
 	{
-		"gbprod/nord.nvim",
+		"alxdb/nord-dark.nvim",
+		main = "nord",
+		lazy = false,
+		priority = 1000,
 		config = true,
 		init = function()
 			vim.cmd.colorscheme("nord")
@@ -25,7 +28,7 @@ return {
 	},
 	{
 		"nvim-lualine/lualine.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons", "gbprod/nord.nvim" },
+		dependencies = { "nvim-tree/nvim-web-devicons", "alxdb/nord-dark.nvim" },
 		opts = {
 			sections = {
 				lualine_x = { "filetype" },
