@@ -3,8 +3,8 @@
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "nixos";
-  home.homeDirectory = "/home/nixos";
+  home.username = "alxdb";
+  home.homeDirectory = "/home/alxdb";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -41,8 +41,8 @@
   # 'home.sessionVariables'.
   home.sessionVariables = {
     # https://github.com/nix-community/home-manager/issues/3711
-    LANG = "C.UTF-8";
-    GOPATH = "$HOME/.local/go";
+    # LANG = "C.UTF-8";
+    # GOPATH = "$HOME/.local/go";
   };
 
   # Let Home Manager install and manage itself.
@@ -103,21 +103,29 @@
       pkgs.ripgrep
       pkgs.fd
       # Language Tools
+      ## nix
       pkgs.nixfmt
       pkgs.nil
+      ## lua
       pkgs.stylua
       pkgs.lua-language-server
+      ## json,yaml,toml,md,etc...
       pkgs.vscode-langservers-extracted
       pkgs.yaml-language-server
       pkgs.prettierd
       pkgs.taplo
+      ## css,html,js,ts,etc...
       pkgs.tailwindcss-language-server
       pkgs.nodePackages.typescript-language-server
+      ## go
       pkgs.gopls
+      ## protobuf
       pkgs.buf-language-server
       pkgs.buf
+      ## purescript
       pkgs.nodePackages.purescript-language-server
       pkgs.dhall-lsp-server
+      ## rust
       pkgs.rust-analyzer
       pkgs.rustc
       pkgs.rustfmt
@@ -158,15 +166,15 @@
   # Tmux 
   programs.tmux = {
     enable = true;
-    terminal = "tmux-256color";
+    # terminal = "tmux-256color";
     sensibleOnTop = true;
     shortcut = "a";
     keyMode = "vi";
     customPaneNavigationAndResize = true;
     reverseSplit = true;
-    extraConfig = ''
-      set -ag terminal-overrides ",xterm-256color:RGB"
-    '';
-    plugins = with pkgs; [ tmuxPlugins.nord tmuxPlugins.prefix-highlight ];
+    # extraConfig = ''
+    #   set -ag terminal-overrides ",xterm-256color:RGB"
+    # '';
+    plugins = with pkgs; [ tmuxPlugins.prefix-highlight ];
   };
 }

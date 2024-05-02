@@ -17,7 +17,7 @@
       pkgs = nixpkgs.legacyPackages.${system};
       pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
     in {
-      homeConfigurations."nixos" = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations."alxdb" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
         # Specify your home configuration modules here, for example,
