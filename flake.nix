@@ -11,12 +11,19 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, home-manager, ... }:
+  outputs =
+    {
+      nixpkgs,
+      nixpkgs-unstable,
+      home-manager,
+      ...
+    }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
       pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
-    in {
+    in
+    {
       homeConfigurations."alxdb" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
@@ -26,7 +33,9 @@
 
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
-        extraSpecialArgs = { inherit pkgs-unstable; };
+        extraSpecialArgs = {
+          inherit pkgs-unstable;
+        };
       };
     };
 }

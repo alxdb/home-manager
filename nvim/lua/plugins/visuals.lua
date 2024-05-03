@@ -17,22 +17,37 @@ return {
 		end,
 	},
 	{
-		"alxdb/nord-dark.nvim",
-		main = "nord",
-		lazy = false,
+		"catppuccin/nvim",
+		name = "catppuccin",
 		priority = 1000,
-		config = true,
+		config = {
+			flavour = "mocha",
+		},
 		init = function()
-			vim.cmd.colorscheme("nord")
+			vim.cmd.colorscheme("catppuccin")
 		end,
 	},
 	{
 		"nvim-lualine/lualine.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons", "alxdb/nord-dark.nvim" },
+		dependencies = { "nvim-tree/nvim-web-devicons", "catppuccin/nvim" },
 		opts = {
 			sections = {
+				lualine_b = { "branch", "diff", "diagnostics" },
+				lualine_c = {},
 				lualine_x = { "filetype" },
-				lualine_y = {},
+			},
+			inactive_sections = {
+				lualine_c = {},
+			},
+			winbar = {
+				lualine_b = { { "buffers", show_filename_only = false } },
+			},
+			inactive_winbar = {
+				lualine_b = { { "buffers", show_filename_only = false } },
+			},
+			options = {
+				section_separators = { left = "", right = "" },
+				component_separators = { left = "", right = "" },
 			},
 		},
 	},
@@ -51,83 +66,6 @@ return {
 		dependencies = {
 			"MunifTanjim/nui.nvim",
 			"rcarriga/nvim-notify",
-		},
-	},
-	{
-		"lewis6991/gitsigns.nvim",
-		dependencies = { "folke/which-key.nvim" },
-		opts = {
-			on_attach = function(bufnr)
-				local gs = package.loaded.gitsigns
-				local wk = require("which-key")
-
-				vim.keymap.set("n", "]c", function()
-					if vim.wo.diff then
-						return "]c"
-					end
-					vim.schedule(function()
-						gs.next_hunk()
-					end)
-					return "<Ignore>"
-				end, { buffer = bufnr, expr = true })
-				vim.keymap.set("n", "[c", function()
-					if vim.wo.diff then
-						return "[c"
-					end
-					vim.schedule(function()
-						gs.prev_hunk()
-					end)
-					return "<Ignore>"
-				end, { buffer = bufnr, expr = true })
-
-				wk.register({
-					s = {
-						name = "signs",
-						s = { gs.stage_hunk, "stage hunk" },
-						S = { gs.stage_buffer, "stage buffer" },
-						r = { gs.reset_hunk, "reset hunk" },
-						p = { gs.preview_hunk, "preview hunk" },
-						b = { gs.toggle_current_line_blame, "blame line toggle" },
-					},
-				}, { prefix = "<leader>g" })
-			end,
-		},
-	},
-	{
-		"nvim-telescope/telescope.nvim",
-		tag = "0.1.5",
-		dependencies = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
-		keys = {
-			{
-				"<leader>ff",
-				function()
-					require("telescope.builtin").find_files()
-				end,
-				desc = "Telescope (find) Files",
-			},
-			{
-				"<leader>bb",
-				function()
-					require("telescope.builtin").buffers()
-				end,
-				desc = "Telescope (browse) Buffers",
-			},
-		},
-	},
-	{
-		"nvim-telescope/telescope-file-browser.nvim",
-		dependencies = { "nvim-telescope/telescope.nvim" },
-		init = function(_)
-			require("telescope").load_extension("file_browser")
-		end,
-		keys = {
-			{
-				"<leader>fb",
-				function()
-					require("telescope").extensions.file_browser.file_browser()
-				end,
-				desc = "Telescope file browser",
-			},
 		},
 	},
 }
