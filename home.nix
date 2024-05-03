@@ -1,52 +1,81 @@
-{ pkgs, ... }:
-
+{ pkgs, lib, ... }:
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "alxdb";
   home.homeDirectory = "/home/alxdb";
 
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
-  home.stateVersion = "23.11"; # Please read the comment before changing.
-
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
-
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
+  home.packages = with pkgs; [
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
     # # environment:
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-    pkgs.htop
+    htop
+    wl-clipboard
   ];
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'.
-  home.sessionVariables = {
-    # https://github.com/nix-community/home-manager/issues/3711
-    # LANG = "C.UTF-8";
-    # GOPATH = "$HOME/.local/go";
-  };
+  home.sessionVariables = { };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  # Window Manager Configuration + basic apps
+  wayland.windowManager.sway = rec {
+    enable = true;
+    config = {
+      modifier = "Mod4";
+      keybindings =
+        let
+          modifier = config.modifier;
+        in
+        lib.mkOptionDefault {
+          "${modifier}+Return" = "exec alacritty";
+          "${modifier}+Alt+Return" = "exec chromium";
+        };
+      output = {
+        "DP-1" = {
+          scale = "1.5";
+        };
+        "DP-2" = {
+          transform = "270";
+          position = "-1920 0";
+        };
+      };
+      window = {
+        hideEdgeBorders = "smart";
+        titlebar = false;
+      };
+    };
+  };
+
+  home.pointerCursor = {
+    name = "Adwaita";
+    package = pkgs.gnome.adwaita-icon-theme;
+  };
+
+  programs.chromium = {
+    enable = true;
+    commandLineArgs = [
+      "--ozone-platform-hint=wayland"
+      "--force-dark-mode"
+    ];
+    extensions = [
+      { id = "eimadpbcbfnmbkopoojfekhnkhdbieeh"; } # dark reader
+      { id = "ghmbeldphafepmbegfdlkpapadhbakde"; } # proton pass
+      { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; } # vimium
+      { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # ublock origin
+    ];
+  };
+
+  programs.alacritty = {
+    enable = true;
+  };
 
   # Shell configuration
   programs.zsh = {
@@ -71,12 +100,23 @@
         vi +':lua require("telescope.builtin").find_files()'
       '';
     };
+
+    loginExtra = ''
+      if [[ $(tty) = /dev/tty1 ]]; then
+        exec sway
+      fi
+    '';
   };
   programs.starship.enable = true;
-  home.file."./.config/starship.toml" = { source = ./starship.toml; };
+  home.file."./.config/starship.toml" = {
+    source = ./starship.toml;
+  };
   programs.zoxide = {
     enable = true;
-    options = [ "--cmd" "cd" ];
+    options = [
+      "--cmd"
+      "cd"
+    ];
   };
   programs.direnv = {
     enable = true;
@@ -104,7 +144,7 @@
       pkgs.fd
       # Language Tools
       ## nix
-      pkgs.nixfmt
+      pkgs.nixfmt-rfc-style
       pkgs.nil
       ## lua
       pkgs.stylua
@@ -153,28 +193,22 @@
       init.defaultBranch = "main";
       diff.tool = "nvimdiff";
     };
-    ignores = [ ".envrc" ".direnv" "result" ];
+    ignores = [
+      ".envrc"
+      ".direnv"
+      "result"
+    ];
   };
   programs.gh = {
     enable = true;
-    settings = { git_protocol = "ssh"; };
+    settings = {
+      git_protocol = "ssh";
+    };
   };
   programs.ssh.enable = true;
   services.ssh-agent.enable = true;
   programs.lazygit.enable = true;
 
-  # Tmux 
-  programs.tmux = {
-    enable = true;
-    # terminal = "tmux-256color";
-    sensibleOnTop = true;
-    shortcut = "a";
-    keyMode = "vi";
-    customPaneNavigationAndResize = true;
-    reverseSplit = true;
-    # extraConfig = ''
-    #   set -ag terminal-overrides ",xterm-256color:RGB"
-    # '';
-    plugins = with pkgs; [ tmuxPlugins.prefix-highlight ];
-  };
+  # You should not change this value, even if you update Home Manager.
+  home.stateVersion = "23.11"; # Please read the comment before changing.
 }
