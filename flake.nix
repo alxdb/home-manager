@@ -9,6 +9,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs =
@@ -16,6 +17,7 @@
       nixpkgs,
       nixpkgs-unstable,
       home-manager,
+      catppuccin,
       ...
     }:
     let
@@ -29,7 +31,10 @@
 
         # Specify your home configuration modules here, for example,
         # the path to your home.nix.
-        modules = [ ./home.nix ];
+        modules = [
+          ./home.nix
+          catppuccin.homeManagerModules.catppuccin
+        ];
 
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix

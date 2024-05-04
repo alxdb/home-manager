@@ -25,19 +25,21 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  # Catppuccin flavour 
+  catppuccin.flavour = "mocha";
+
   # Window Manager Configuration + basic apps
   wayland.windowManager.sway = rec {
     enable = true;
+    catppuccin.enable = true;
     config = {
       modifier = "Mod4";
+      terminal = "alacritty";
       keybindings =
         let
           modifier = config.modifier;
         in
-        lib.mkOptionDefault {
-          "${modifier}+Return" = "exec alacritty";
-          "${modifier}+Alt+Return" = "exec chromium";
-        };
+        lib.mkOptionDefault { "${modifier}+Alt+Return" = "exec chromium"; };
       output = {
         "DP-1" = {
           scale = "1.5";
@@ -51,6 +53,82 @@
         hideEdgeBorders = "smart";
         titlebar = false;
       };
+      colors = {
+        background = "$base";
+        focused = {
+          childBorder = "$lavender";
+          background = "$base";
+          text = "$text";
+          indicator = "$rosewater";
+          border = "$lavender";
+        };
+        focusedInactive = {
+          childBorder = "$overlay0";
+          background = "$base";
+          text = "$text";
+          indicator = "$rosewater";
+          border = "$overlay0";
+        };
+        unfocused = {
+          childBorder = "$overlay0";
+          background = "$base";
+          text = "$text";
+          indicator = "$rosewater";
+          border = "$overlay0";
+        };
+        urgent = {
+          childBorder = "$peach";
+          background = "$base";
+          text = "$peach";
+          indicator = "$overlay0";
+          border = "$peach";
+        };
+        placeholder = {
+          childBorder = "$overlay0";
+          background = "$base";
+          text = "$text";
+          indicator = "$overlay0";
+          border = "$overlay0";
+        };
+      };
+      bars = [
+        {
+          position = "top";
+          command = "${pkgs.sway}/bin/swaybar";
+          statusCommand = "${pkgs.i3status}/bin/i3status";
+          colors = {
+            background = "$base";
+            statusline = "$text";
+            focusedStatusline = "$text";
+            focusedSeparator = "$base";
+            focusedWorkspace = {
+              border = "$base";
+              background = "$base";
+              text = "$green";
+            };
+            activeWorkspace = {
+              border = "$base";
+              background = "$base";
+              text = "$blue";
+            };
+            inactiveWorkspace = {
+              border = "$base";
+              background = "$base";
+              text = "$surface1";
+            };
+            urgentWorkspace = {
+              border = "$base";
+              background = "$base";
+              text = "$surface1";
+            };
+            bindingMode = {
+              border = "$base";
+              background = "$base";
+              text = "$surface1";
+            };
+          };
+        }
+      ];
     };
   };
 
@@ -75,6 +153,7 @@
 
   programs.alacritty = {
     enable = true;
+    catppuccin.enable = true;
   };
 
   # Shell configuration
@@ -107,9 +186,174 @@
       fi
     '';
   };
-  programs.starship.enable = true;
-  home.file."./.config/starship.toml" = {
-    source = ./starship.toml;
+  programs.starship = {
+    enable = true;
+    catppuccin.enable = true;
+    settings = {
+      aws = {
+        symbol = "  ";
+      };
+      buf = {
+        symbol = " ";
+      };
+      c = {
+        symbol = " ";
+      };
+      conda = {
+        symbol = " ";
+      };
+      crystal = {
+        symbol = " ";
+      };
+      dart = {
+        symbol = " ";
+      };
+      directory = {
+        read_only = " 󰌾";
+      };
+      docker_context = {
+        symbol = " ";
+      };
+      elixir = {
+        symbol = " ";
+      };
+      elm = {
+        symbol = " ";
+      };
+      fennel = {
+        symbol = " ";
+      };
+      fossil_branch = {
+        symbol = " ";
+      };
+      git_branch = {
+        symbol = " ";
+      };
+      golang = {
+        symbol = " ";
+      };
+      guix_shell = {
+        symbol = " ";
+      };
+      haskell = {
+        symbol = " ";
+      };
+      haxe = {
+        symbol = " ";
+      };
+      hg_branch = {
+        symbol = " ";
+      };
+      hostname = {
+        ssh_symbol = " ";
+      };
+      java = {
+        symbol = " ";
+      };
+      julia = {
+        symbol = " ";
+      };
+      kotlin = {
+        symbol = " ";
+      };
+      lua = {
+        symbol = " ";
+      };
+      memory_usage = {
+        symbol = "󰍛 ";
+      };
+      meson = {
+        symbol = "󰔷 ";
+      };
+      nim = {
+        symbol = "󰆥 ";
+      };
+      nix_shell = {
+        symbol = " ";
+      };
+      nodejs = {
+        symbol = " ";
+      };
+      ocaml = {
+        symbol = " ";
+      };
+      os = {
+        symbols = {
+          Alpaquita = " ";
+          Alpine = " ";
+          Amazon = " ";
+          Android = " ";
+          Arch = " ";
+          Artix = " ";
+          CentOS = " ";
+          Debian = " ";
+          DragonFly = " ";
+          Emscripten = " ";
+          EndeavourOS = " ";
+          Fedora = " ";
+          FreeBSD = " ";
+          Garuda = "󰛓 ";
+          Gentoo = " ";
+          HardenedBSD = "󰞌 ";
+          Illumos = "󰈸 ";
+          Linux = " ";
+          Mabox = " ";
+          Macos = " ";
+          Manjaro = " ";
+          Mariner = " ";
+          MidnightBSD = " ";
+          Mint = " ";
+          NetBSD = " ";
+          NixOS = " ";
+          OpenBSD = "󰈺 ";
+          OracleLinux = "󰌷 ";
+          Pop = " ";
+          Raspbian = " ";
+          RedHatEnterprise = " ";
+          Redhat = " ";
+          Redox = "󰀘 ";
+          SUSE = " ";
+          Solus = "󰠳 ";
+          Ubuntu = " ";
+          Unknown = " ";
+          Windows = "󰍲 ";
+          openSUSE = " ";
+        };
+      };
+      package = {
+        symbol = "󰏗 ";
+      };
+      perl = {
+        symbol = " ";
+      };
+      php = {
+        symbol = " ";
+      };
+      pijul_channel = {
+        symbol = " ";
+      };
+      python = {
+        symbol = " ";
+      };
+      rlang = {
+        symbol = "󰟔 ";
+      };
+      ruby = {
+        symbol = " ";
+      };
+      rust = {
+        symbol = " ";
+      };
+      scala = {
+        symbol = " ";
+      };
+      swift = {
+        symbol = " ";
+      };
+      zig = {
+        symbol = " ";
+      };
+    };
   };
   programs.zoxide = {
     enable = true;
