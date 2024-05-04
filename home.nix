@@ -63,7 +63,6 @@
           };
         };
         window = {
-          hideEdgeBorders = "smart";
           titlebar = false;
         };
         colors = {
@@ -104,88 +103,105 @@
             border = "$overlay0";
           };
         };
-        bars = [
-          {
-            position = "top";
-            command = "${pkgs.sway}/bin/swaybar";
-            statusCommand = "i3status";
-            colors = {
-              background = "$base";
-              statusline = "$text";
-              focusedStatusline = "$text";
-              focusedSeparator = "$base";
-              focusedWorkspace = {
-                border = "$base";
-                background = "$base";
-                text = "$green";
-              };
-              activeWorkspace = {
-                border = "$base";
-                background = "$base";
-                text = "$blue";
-              };
-              inactiveWorkspace = {
-                border = "$base";
-                background = "$base";
-                text = "$surface1";
-              };
-              urgentWorkspace = {
-                border = "$base";
-                background = "$base";
-                text = "$surface1";
-              };
-              bindingMode = {
-                border = "$base";
-                background = "$base";
-                text = "$surface1";
-              };
-            };
-          }
-        ];
+        bars = [ { command = "waybar"; } ];
+        gaps = {
+          inner = 10;
+        };
+      };
+    };
+    hyprland = {
+      enable = false;
+      catppuccin.enable = true;
+      settings = {
+        "$mod" = "SUPER";
+        bind =
+          [ "$mod, Enter, exec, alacritty" ]
+          ++ (builtins.concatLists (
+            builtins.genList (ws: [
+              "$mod, ${toString ws}, workspace, ${toString ws}"
+              "$mod SHIFT, ${toString ws}, movetoworkspace, ${toString ws}"
+            ]) 10
+          ));
       };
     };
   };
 
-  programs.i3status = {
+  programs.waybar = {
     enable = true;
-    general = {
-      interval = 1;
-    };
-    modules = {
-      ipv6 = {
-        enable = false;
-      };
-      "wireless _first_" = {
-        enable = false;
-      };
-      "ethernet _first_" = {
-        enable = false;
-      };
-      "battery all" = {
-        enable = false;
-      };
-      "disk /" = {
-        position = 1;
-        settings = {
-          format = "DSK %avail";
+    catppuccin.enable = true;
+    style = ''
+      * {
+        font-family: monospace;
+        font-size: 12px;
+        min-height: 1rem;
+      }
+
+      #waybar {
+        background: transparent;
+        color: @text;
+        margin: 1rem;
+        padding: 1rem;
+      }
+
+      #tray,
+      #clock
+      {
+        border-radius: 1rem 0 0 1rem;
+        background-color: @surface1;
+      }
+
+      #clock {
+        padding: 0 1rem;
+        color: @blue;
+      }
+
+      #workspaces {
+        margin: 0 1rem;
+        padding: 0;
+        border-radius: 1rem;
+        background-color: @surface0;
+      }
+
+      #workspaces button {
+        color: @lavender;
+        border-radius: 1rem;
+        padding: 0.4rem;
+        background-color: @surface0;
+      }
+
+      #workspaces button.focused {
+        color: @sky;
+        background-color: @surface1;
+      }
+      #workspaces button:hover {
+        color: @sapphire;
+        border-radius: 1rem;
+      }
+    '';
+    settings = {
+      mainBar = {
+        layer = "top";
+        modules-center = [ "sway/window" ];
+        modules-left = [
+          "sway/workspaces"
+          "sway/mode"
+        ];
+        modules-right = [
+          "tray"
+          "clock"
+        ];
+        position = "top";
+        "wlr/workspaces" = {
+          disable-scroll = true;
+          format = " {name} ";
+          format-icons = {
+            default = " ";
+          };
+          sort-by-name = true;
         };
-      };
-      load = {
-        position = 2;
-        settings = {
-          format = "CPU %1min";
-        };
-      };
-      memory = {
-        position = 3;
-        settings = {
-          format = "MEM %used | %available";
-        };
-      };
-      "tztime local" = {
-        position = 4;
-        settings = {
-          format = "%Y-%m-%d %H:%M:%S";
+        tray = {
+          icon-size = 21;
+          spacing = 10;
         };
       };
     };
