@@ -9,8 +9,15 @@ return {
 		opts = {
 			auto_install = true,
 			highlight = { enable = true },
+			incremental_selection = { enable = true },
 			indent = { enable = true },
 		},
+		init = function()
+			vim.opt.foldmethod = "expr"
+			vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+			vim.opt.foldenable = true
+			vim.opt.foldlevel = 9999
+		end,
 	},
 	{
 		"VonHeikemen/lsp-zero.nvim",

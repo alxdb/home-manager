@@ -29,106 +29,165 @@
   catppuccin.flavour = "mocha";
 
   # Window Manager Configuration + basic apps
-  wayland.windowManager.sway = rec {
-    enable = true;
-    catppuccin.enable = true;
-    config = {
-      modifier = "Mod4";
-      terminal = "alacritty";
-      keybindings =
-        let
-          modifier = config.modifier;
-        in
-        lib.mkOptionDefault { "${modifier}+Alt+Return" = "exec chromium"; };
-      output = {
-        "DP-1" = {
-          scale = "1.5";
-        };
-        "DP-2" = {
-          transform = "270";
-          position = "-1920 0";
-        };
-      };
-      window = {
-        hideEdgeBorders = "smart";
-        titlebar = false;
-      };
-      colors = {
-        background = "$base";
-        focused = {
-          childBorder = "$lavender";
-          background = "$base";
-          text = "$text";
-          indicator = "$rosewater";
-          border = "$lavender";
-        };
-        focusedInactive = {
-          childBorder = "$overlay0";
-          background = "$base";
-          text = "$text";
-          indicator = "$rosewater";
-          border = "$overlay0";
-        };
-        unfocused = {
-          childBorder = "$overlay0";
-          background = "$base";
-          text = "$text";
-          indicator = "$rosewater";
-          border = "$overlay0";
-        };
-        urgent = {
-          childBorder = "$peach";
-          background = "$base";
-          text = "$peach";
-          indicator = "$overlay0";
-          border = "$peach";
-        };
-        placeholder = {
-          childBorder = "$overlay0";
-          background = "$base";
-          text = "$text";
-          indicator = "$overlay0";
-          border = "$overlay0";
-        };
-      };
-      bars = [
-        {
-          position = "top";
-          command = "${pkgs.sway}/bin/swaybar";
-          statusCommand = "${pkgs.i3status}/bin/i3status";
-          colors = {
-            background = "$base";
-            statusline = "$text";
-            focusedStatusline = "$text";
-            focusedSeparator = "$base";
-            focusedWorkspace = {
-              border = "$base";
-              background = "$base";
-              text = "$green";
-            };
-            activeWorkspace = {
-              border = "$base";
-              background = "$base";
-              text = "$blue";
-            };
-            inactiveWorkspace = {
-              border = "$base";
-              background = "$base";
-              text = "$surface1";
-            };
-            urgentWorkspace = {
-              border = "$base";
-              background = "$base";
-              text = "$surface1";
-            };
-            bindingMode = {
-              border = "$base";
-              background = "$base";
-              text = "$surface1";
-            };
+  wayland.windowManager = {
+    sway = rec {
+      enable = true;
+      catppuccin.enable = true;
+      config = {
+        modifier = "Mod4";
+        terminal = "alacritty";
+        keybindings =
+          let
+            modifier = config.modifier;
+          in
+          lib.mkOptionDefault {
+            "${modifier}+Alt+Return" = "exec chromium";
+            "${modifier}+0" = "workspace number 0";
+            "${modifier}+Shift+0" = "move container to workspace number 0";
           };
-        }
-      ];
+        output = {
+          "*" = {
+            bg = "$base solid_color";
+          };
+          "DP-1" = {
+            scale = "1.5";
+          };
+          "DP-2" = {
+            transform = "270";
+            position = "-1920 0";
+          };
+        };
+        seat = {
+          "*" = {
+            hide_cursor = "1000";
+          };
+        };
+        window = {
+          hideEdgeBorders = "smart";
+          titlebar = false;
+        };
+        colors = {
+          background = "$base";
+          focused = {
+            childBorder = "$lavender";
+            background = "$base";
+            text = "$text";
+            indicator = "$rosewater";
+            border = "$lavender";
+          };
+          focusedInactive = {
+            childBorder = "$overlay0";
+            background = "$base";
+            text = "$text";
+            indicator = "$rosewater";
+            border = "$overlay0";
+          };
+          unfocused = {
+            childBorder = "$overlay0";
+            background = "$base";
+            text = "$text";
+            indicator = "$rosewater";
+            border = "$overlay0";
+          };
+          urgent = {
+            childBorder = "$peach";
+            background = "$base";
+            text = "$peach";
+            indicator = "$overlay0";
+            border = "$peach";
+          };
+          placeholder = {
+            childBorder = "$overlay0";
+            background = "$base";
+            text = "$text";
+            indicator = "$overlay0";
+            border = "$overlay0";
+          };
+        };
+        bars = [
+          {
+            position = "top";
+            command = "${pkgs.sway}/bin/swaybar";
+            statusCommand = "i3status";
+            colors = {
+              background = "$base";
+              statusline = "$text";
+              focusedStatusline = "$text";
+              focusedSeparator = "$base";
+              focusedWorkspace = {
+                border = "$base";
+                background = "$base";
+                text = "$green";
+              };
+              activeWorkspace = {
+                border = "$base";
+                background = "$base";
+                text = "$blue";
+              };
+              inactiveWorkspace = {
+                border = "$base";
+                background = "$base";
+                text = "$surface1";
+              };
+              urgentWorkspace = {
+                border = "$base";
+                background = "$base";
+                text = "$surface1";
+              };
+              bindingMode = {
+                border = "$base";
+                background = "$base";
+                text = "$surface1";
+              };
+            };
+          }
+        ];
+      };
+    };
+  };
+
+  programs.i3status = {
+    enable = true;
+    general = {
+      interval = 1;
+    };
+    modules = {
+      ipv6 = {
+        enable = false;
+      };
+      "wireless _first_" = {
+        enable = false;
+      };
+      "ethernet _first_" = {
+        enable = false;
+      };
+      "battery all" = {
+        enable = false;
+      };
+      "disk /" = {
+        position = 1;
+        settings = {
+          format = "DSK %avail";
+        };
+      };
+      load = {
+        position = 2;
+        settings = {
+          format = "CPU %1min";
+        };
+      };
+      memory = {
+        position = 3;
+        settings = {
+          format = "MEM %used | %available";
+        };
+      };
+      "tztime local" = {
+        position = 4;
+        settings = {
+          format = "%Y-%m-%d %H:%M:%S";
+        };
+      };
     };
   };
 
@@ -176,7 +235,7 @@
       g = "git";
       lg = "lazygit";
       vf = ''
-        vi +':lua require("telescope.builtin").find_files()'
+        vi +':lua require("telescope.builtin").fd()'
       '';
     };
 
