@@ -244,6 +244,10 @@
     enable = true;
     enableAliases = true;
   };
+  programs.bat = {
+    enable = true;
+    catppuccin.enable = true;
+  };
 
   # Editor configuration
   programs.neovim = {
