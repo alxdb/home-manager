@@ -18,6 +18,13 @@ return {
 				end,
 				desc = "Telescope (browse) Buffers",
 			},
+			{
+				"<leader>fs",
+				function()
+					require("telescope.builtin").live_grep()
+				end,
+				desc = "Telescope (search in) Files",
+			},
 		},
 	},
 	{
