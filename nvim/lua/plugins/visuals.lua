@@ -8,6 +8,7 @@ return {
 				["<leader>f"] = { name = "files" },
 				["<leader>b"] = { name = "buffers" },
 				["<leader>g"] = { name = "git" },
+				["<leader>w"] = { name = "window" },
 			},
 		},
 		config = function(_, opts)
@@ -65,6 +66,18 @@ return {
 		dependencies = {
 			"MunifTanjim/nui.nvim",
 			"rcarriga/nvim-notify",
+		},
+	},
+	{
+		"folke/zen-mode.nvim",
+		opts = {},
+		keys = {
+			{
+				"<leader>wz",
+				function()
+					require("zen-mode").toggle()
+				end,
+			},
 		},
 	},
 }
