@@ -8,14 +8,12 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs =
     {
       nixpkgs,
-      nixpkgs-unstable,
       home-manager,
       catppuccin,
       ...
@@ -23,7 +21,6 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
     in
     {
       homeConfigurations."alxdb" = home-manager.lib.homeManagerConfiguration {
@@ -39,9 +36,7 @@
 
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
-        extraSpecialArgs = {
-          inherit pkgs-unstable;
-        };
+        extraSpecialArgs = { };
       };
     };
 }
