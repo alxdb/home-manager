@@ -1,12 +1,20 @@
 { pkgs, lib, ... }:
 {
-  home.packages = with pkgs; [ wl-clipboard ];
+  home.packages = with pkgs; [
+    wl-clipboard
+    protonup
+  ];
+
+  home.sessionVariables = {
+    STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
+  };
 
   # Window Manager Configuration + basic apps
   wayland.windowManager = {
     sway = rec {
       enable = true;
       catppuccin.enable = true;
+      wrapperFeatures.gtk = true;
       config = {
         modifier = "Mod4";
         terminal = "alacritty";
@@ -117,16 +125,19 @@
         padding: 1rem;
       }
 
-      #tray,
       #clock
       {
         border-radius: 1rem 0 0 1rem;
         background-color: @surface1;
-      }
-
-      #clock {
         padding: 0 1rem;
         color: @blue;
+      }
+
+      #tray {
+        border-radius: 1rem;
+        padding: 0 1rem;
+        margin: 0 1rem;
+        background-color: @surface0;
       }
 
       #workspaces {
