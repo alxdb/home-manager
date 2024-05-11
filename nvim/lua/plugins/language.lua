@@ -89,7 +89,7 @@ return {
 			lspconfig.dhall_lsp_server.setup({})
 
 			-- rust
-			lspconfig.rust_analyzer.setup({})
+			-- lspconfig.rust_analyzer.setup({})
 		end,
 	},
 	{
@@ -110,4 +110,15 @@ return {
 		end,
 	},
 	{ "purescript-contrib/purescript-vim" },
+	{
+		"mrcjkb/rustaceanvim",
+		dependencies = { "folke/which-key.nvim" },
+		version = "^4",
+		lazy = false,
+		keys = { { "<leader>lrd", "<cmd>RustLsp openDocs<cr>", desc = "Open on docs.rs" } },
+		init = function()
+			local wk = require("which-key")
+			wk.register({ ["<leader>lr"] = { name = "rust" } })
+		end,
+	},
 }

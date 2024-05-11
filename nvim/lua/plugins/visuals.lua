@@ -9,6 +9,7 @@ return {
 				["<leader>b"] = { name = "buffers" },
 				["<leader>g"] = { name = "git" },
 				["<leader>w"] = { name = "window" },
+				["<leader>l"] = { name = "language" },
 			},
 		},
 		config = function(_, opts)
@@ -78,6 +79,7 @@ return {
 				function()
 					require("zen-mode").toggle()
 				end,
+				desc = "Open zen-mode",
 			},
 		},
 	},

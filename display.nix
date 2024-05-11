@@ -26,6 +26,8 @@
             "${modifier}+Alt+Return" = "exec chromium";
             "${modifier}+0" = "workspace number 0";
             "${modifier}+Shift+0" = "move container to workspace number 0";
+            "${modifier}+d" = "exec tofi-drun | xargs swaymsg exec --";
+            "${modifier}+Shift+d" = "exec tofi-run | xargs swaymsg exec --";
           };
         output = {
           "*" = {
@@ -118,8 +120,8 @@
         min-height: 1rem;
       }
 
-      #waybar {
-        background: transparent;
+      window#waybar {
+        background: @mantle;
         color: @text;
         margin: 1rem;
         padding: 1rem;
@@ -189,6 +191,34 @@
           spacing = 10;
         };
       };
+    };
+  };
+
+  programs.tofi = {
+    enable = true;
+    catppuccin.enable = true;
+    settings = {
+      border-width = 2;
+      outline-width = 2;
+      corner-radius = 4;
+      width = "40%";
+      height = "20%";
+      font = "monospace";
+      font-size = 14;
+    };
+  };
+
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Adwaita-dark";
+      package = pkgs.gnome.gnome-themes-extra;
+    };
+  };
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
     };
   };
 
