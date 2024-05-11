@@ -18,6 +18,7 @@
 
   # Catppuccin flavour 
   catppuccin.flavour = "mocha";
+  catppuccin.accent = "lavender";
 
   # Shell configuration
   programs.zsh = {
@@ -154,7 +155,10 @@
   };
   programs.ssh.enable = true;
   services.ssh-agent.enable = true;
-  programs.lazygit.enable = true;
+  programs.lazygit = {
+    enable = true;
+    catppuccin.enable = true;
+  };
 
   # You should not change this value, even if you update Home Manager.
   home.stateVersion = "23.11"; # Please read the comment before changing.
