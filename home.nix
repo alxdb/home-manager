@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -43,12 +43,6 @@
         vi +':lua require("telescope.builtin").fd()'
       '';
     };
-
-    # loginExtra = ''
-    #   if [[ $(tty) = /dev/tty1 ]]; then
-    #     exec sway
-    #   fi
-    # '';
   };
   programs.starship = {
     enable = true;
