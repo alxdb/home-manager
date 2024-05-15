@@ -103,21 +103,29 @@
       pkgs.ripgrep
       pkgs.fd
       # Language Tools
+      ## nix
       pkgs.nixfmt
       pkgs.nil
+      ## lua
       pkgs.stylua
       pkgs.lua-language-server
+      ## json,yaml,toml,md,etc...
       pkgs.vscode-langservers-extracted
       pkgs.yaml-language-server
       pkgs.prettierd
       pkgs.taplo
+      ## css,html,js,ts,etc...
       pkgs.tailwindcss-language-server
       pkgs.nodePackages.typescript-language-server
+      ## go
       pkgs.gopls
+      ## protobuf
       pkgs.buf-language-server
       pkgs.buf
+      ## purescript
       pkgs.nodePackages.purescript-language-server
       pkgs.dhall-lsp-server
+      ## rust
       pkgs.rust-analyzer
       pkgs.rustc
       pkgs.rustfmt
