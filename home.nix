@@ -57,7 +57,7 @@
       g = "git";
       lg = "lazygit";
       vf = ''
-        vi +':lua require("telescope.builtin").find_files()'
+        vi +':lua require("telescope.builtin").fd()'
       '';
     };
   };
