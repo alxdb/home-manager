@@ -31,7 +31,7 @@ return {
 		dependencies = { "nvim-tree/nvim-web-devicons", "alxdb/nord-dark.nvim" },
 		opts = {
 			sections = {
-				lualine_b = { "branch", "diff", "diagnostics" },
+				lualine_b = { { "branch", icon = "" }, "diff", "diagnostics" },
 				lualine_c = {},
 				lualine_x = { "filetype" },
 			},
