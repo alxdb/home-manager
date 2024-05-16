@@ -246,7 +246,6 @@
   };
   programs.bat = {
     enable = true;
-    catppuccin.enable = true;
   };
 
   # Editor configuration
