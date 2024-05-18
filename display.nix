@@ -121,10 +121,7 @@
     settings = {
       mainBar = {
         layer = "top";
-        modules-left = [
-          "sway/window"
-          "sway/mode"
-        ];
+        modules-left = [ "sway/mode" ];
         modules-center = [ "sway/workspaces" ];
         modules-right = [
           "tray"
@@ -142,19 +139,6 @@
           };
           sort-by-number = true;
           disable-scroll = true;
-        };
-        "sway/window" = {
-          format = "{title}";
-          max-length = 100;
-          all-outputs = true;
-          offscreen-css = true;
-          offscreen-css-text = "";
-          rewrite = {
-            "Alacritty" = "";
-            "(.*) - Chromium" = "";
-            "Spotify - (.*)" = "󰓇";
-            "Steam" = "";
-          };
         };
         tray = {
           icon-size = 16;

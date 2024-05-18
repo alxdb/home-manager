@@ -9,13 +9,8 @@ window#waybar {
   border-bottom: 2px solid @overlay0;
 }
 
-window#waybar #window {
-  font-size: 24px;
-  color: @mauve;
-  background-color: @surface0;
-  border-bottom: 2px solid @overlay2;
+window#waybar #mode {
   padding: 0 1rem 0 1rem;
-  margin: 0 1rem 0 0;
 }
 
 window#waybar #workspaces button.focused {
