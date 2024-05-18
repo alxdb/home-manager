@@ -35,10 +35,11 @@
           };
           "DP-1" = {
             scale = "1.5";
+            position = "0 0";
           };
           "DP-2" = {
             transform = "270";
-            position = "-1920 0";
+            position = "-1080 0";
           };
         };
         seat = {
@@ -55,21 +56,21 @@
             childBorder = "$lavender";
             background = "$base";
             text = "$text";
-            indicator = "$rosewater";
+            indicator = "$mauve";
             border = "$lavender";
           };
           focusedInactive = {
             childBorder = "$overlay0";
             background = "$base";
             text = "$text";
-            indicator = "$rosewater";
+            indicator = "$lavender";
             border = "$overlay0";
           };
           unfocused = {
             childBorder = "$overlay0";
             background = "$base";
             text = "$text";
-            indicator = "$rosewater";
+            indicator = "$lavender";
             border = "$overlay0";
           };
           urgent = {
@@ -112,83 +113,57 @@
 
   programs.waybar = {
     enable = true;
-    catppuccin.enable = true;
-    style = ''
-      * {
-        font-family: monospace;
-        font-size: 12px;
-        min-height: 1rem;
-      }
-
-      window#waybar {
-        background: @mantle;
-        color: @text;
-        margin: 1rem;
-        padding: 1rem;
-      }
-
-      #clock
-      {
-        border-radius: 1rem 0 0 1rem;
-        background-color: @surface1;
-        padding: 0 1rem;
-        color: @blue;
-      }
-
-      #tray {
-        border-radius: 1rem;
-        padding: 0 1rem;
-        margin: 0 1rem;
-        background-color: @surface0;
-      }
-
-      #workspaces {
-        margin: 0 1rem;
-        padding: 0;
-        border-radius: 1rem;
-        background-color: @surface0;
-      }
-
-      #workspaces button {
-        color: @lavender;
-        border-radius: 1rem;
-        padding: 0.4rem;
-        background-color: @surface0;
-      }
-
-      #workspaces button.focused {
-        color: @sky;
-        background-color: @surface1;
-      }
-      #workspaces button:hover {
-        color: @sapphire;
-        border-radius: 1rem;
-      }
-    '';
+    catppuccin = {
+      enable = true;
+      mode = "createLink";
+    };
+    style = ./waybar.css;
     settings = {
       mainBar = {
         layer = "top";
-        modules-center = [ "sway/window" ];
         modules-left = [
-          "sway/workspaces"
+          "sway/window"
           "sway/mode"
         ];
+        modules-center = [ "sway/workspaces" ];
         modules-right = [
           "tray"
           "clock"
         ];
-        position = "top";
-        "wlr/workspaces" = {
-          disable-scroll = true;
-          format = " {name} ";
-          format-icons = {
-            default = " ";
+        "sway/workspaces" = {
+          format = ''{name} : {windows}'';
+          format-window-separator = " | ";
+          window-rewrite-default = "{name}";
+          window-format = "{name}";
+          window-rewrite = {
+            "class<chromium-browser>" = "";
+            "class<chrome-pjibgclleladliembfgfagdaldikeohf-Default>" = "󰓇";
+            "class<alacritty>" = "";
           };
-          sort-by-name = true;
+          sort-by-number = true;
+          disable-scroll = true;
+        };
+        "sway/window" = {
+          format = "{title}";
+          max-length = 100;
+          all-outputs = true;
+          offscreen-css = true;
+          offscreen-css-text = "";
+          rewrite = {
+            "Alacritty" = "";
+            "(.*) - Chromium" = "";
+            "Spotify - (.*)" = "󰓇";
+            "Steam" = "";
+          };
         };
         tray = {
-          icon-size = 21;
+          icon-size = 16;
           spacing = 10;
+          show-passive-items = true;
+        };
+        clock = {
+          interval = 1;
+          format = "{:%c}";
         };
       };
     };

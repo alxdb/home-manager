@@ -1,0 +1,39 @@
+@import "catppuccin.css";
+
+window#waybar {
+  font-family: monospace;
+  font-size: 14px;
+  color: @text;
+
+  background-color: @crust;
+  border-bottom: 2px solid @overlay0;
+}
+
+window#waybar #window {
+  font-size: 24px;
+  color: @mauve;
+  background-color: @surface0;
+  border-bottom: 2px solid @overlay2;
+  padding: 0 1rem 0 1rem;
+  margin: 0 1rem 0 0;
+}
+
+window#waybar #workspaces button.focused {
+  background-color: @surface0;
+  border-width: 0px;
+  border-bottom: 2px solid @overlay2;
+}
+
+window#waybar #tray {
+  margin: 0;
+  padding: 0 1rem 0 1rem;
+  background-color: @base;
+  border-bottom: 2px solid @overlay1;
+}
+
+window#waybar #clock {
+  margin: 0;
+  padding: 0 1rem 0 1rem;
+  background-color: @surface0;
+  border-bottom: 2px solid @overlay2;
+}
