@@ -15,6 +15,7 @@ window#waybar #mode {
 
 window#waybar #workspaces button.focused {
   background-color: @surface0;
+  border-radius: 0px;
   border-width: 0px;
   border-bottom: 2px solid @overlay2;
 }
