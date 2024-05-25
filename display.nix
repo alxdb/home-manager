@@ -190,6 +190,11 @@
   programs.alacritty = {
     enable = true;
     catppuccin.enable = true;
+    settings = {
+      window = {
+        dynamic_padding = true;
+      };
+    };
   };
 
   # And this
