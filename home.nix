@@ -69,6 +69,12 @@
     catppuccin.enable = true;
   };
 
+  programs.tmux = {
+    enable = true;
+    catppuccin.enable = true;
+    prefix = "C-a";
+  };
+
   # Editor configuration
   programs.neovim = {
     enable = true;
