@@ -11,5 +11,12 @@ vim.keymap.set("n", "L", ":bn<CR>", { silent = true })
 vim.keymap.set("n", "<leader><TAB>", ":b#<CR>", { silent = true, desc = "swap buffer" })
 
 vim.keymap.set("n", "<leader>bd", ":bd<CR>", { silent = true, desc = "delete" })
--- vim.keymap.set("n", "<leader>bn", ":bn<CR>", { silent = true, desc = "next" })
--- vim.keymap.set("n", "<leader>bp", ":bp<CR>", { silent = true, desc = "prev" })
+vim.keymap.set("n", "<leader>q", ":q<CR>", { silent = true, desc = "exit" })
+
+vim.keymap.set("n", "<leader>dc", ":cd %:h<CR>",
+  { silent = true, desc = "change working directory to current file" })
+
+vim.keymap.set("v", "<leader>tc", [[:s/[a-z]\@<=[A-Z]/_\l\0/g<CR>]],
+  { silent = true, desc = "camel case to snake case" })
+vim.keymap.set("v", "<leader>tC", [[:s/_\([a-z]\)/\u\1/g<CR>]],
+  { silent = true, desc = "snake case to camel case" })

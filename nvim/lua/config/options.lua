@@ -17,3 +17,5 @@ vim.o.scrolloff = 8
 vim.o.sidescrolloff = 8
 vim.o.termguicolors = true
 vim.o.cursorline = true
+vim.o.number = true
+vim.o.relativenumber = true
