@@ -112,6 +112,7 @@
       pkgs.buf
       ## purescript
       pkgs.nodePackages.purescript-language-server
+      pkgs.nodePackages.purs-tidy
       pkgs.dhall-lsp-server
       ## rust
       pkgs.rust-analyzer
