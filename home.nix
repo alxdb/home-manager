@@ -118,6 +118,9 @@
       pkgs.rust-analyzer
       pkgs.rustc
       pkgs.rustfmt
+      ## haskell
+      pkgs.haskell-language-server
+      pkgs.haskellPackages.cabal-fmt
     ];
   };
   home.file."./.config/nvim/" = {
