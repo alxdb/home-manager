@@ -121,11 +121,18 @@
       ## haskell
       pkgs.haskell-language-server
       pkgs.haskellPackages.cabal-fmt
+      ## elixir
+      pkgs.elixir-ls
     ];
   };
   home.file."./.config/nvim/" = {
     source = ./nvim;
     recursive = true;
+  };
+
+  programs.helix = {
+    enable = true;
+    catppuccin.enable = true;
   };
 
   # VCS configuration
