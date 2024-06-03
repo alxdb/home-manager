@@ -39,10 +39,12 @@
     shellAliases = {
       g = "git";
       gl = "lazygit";
-      vf = ''
-        vi +':lua require("telescope.builtin").fd()'
-      '';
     };
+    initExtra = ''
+      function vf() {
+        vi +":lua require('telescope.builtin').fd({search_file = '$1' })"
+      }
+    '';
   };
   programs.starship = {
     enable = true;
