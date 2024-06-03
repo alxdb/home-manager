@@ -38,7 +38,7 @@
 
     shellAliases = {
       g = "git";
-      lg = "lazygit";
+      gl = "lazygit";
       vf = ''
         vi +':lua require("telescope.builtin").fd()'
       '';
