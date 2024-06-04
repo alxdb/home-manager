@@ -42,7 +42,7 @@
     };
     initExtra = ''
       function vf() {
-        vi +":lua require('telescope.builtin').fd({search_file = '$1' })"
+        vi +":lua require('telescope.builtin').fd {default_text = '$1' }"
       }
     '';
   };
