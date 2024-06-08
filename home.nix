@@ -125,6 +125,8 @@
       pkgs.haskellPackages.cabal-fmt
       ## elixir
       pkgs.elixir-ls
+      ## C++
+      pkgs.clang-tools_18
     ];
   };
   home.file."./.config/nvim/" = {
