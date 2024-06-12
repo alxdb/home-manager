@@ -17,7 +17,7 @@
       wrapperFeatures.gtk = true;
       config = {
         modifier = "Mod4";
-        terminal = "alacritty";
+        terminal = "kitty";
         keybindings =
           let
             modifier = config.modifier;
@@ -100,7 +100,7 @@
       settings = {
         "$mod" = "SUPER";
         bind =
-          [ "$mod, Enter, exec, alacritty" ]
+          [ "$mod, Enter, exec, kitty" ]
           ++ (builtins.concatLists (
             builtins.genList (ws: [
               "$mod, ${toString ws}, workspace, ${toString ws}"
@@ -135,7 +135,7 @@
           window-rewrite = {
             "class<chromium-browser>" = "";
             "class<chrome-pjibgclleladliembfgfagdaldikeohf-Default>" = "󰓇";
-            "class<alacritty>" = "";
+            "class<kitty>" = "";
           };
           sort-by-number = true;
           disable-scroll = true;
@@ -175,6 +175,12 @@
     };
   };
 
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common.default = [ "gtk" ];
+  };
+
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
@@ -187,13 +193,11 @@
   };
 
   # You'll need this
-  programs.alacritty = {
+  programs.kitty = {
     enable = true;
     catppuccin.enable = true;
     settings = {
-      window = {
-        dynamic_padding = true;
-      };
+      symbol_map = "U+e000-U+e00a,U+ea60-U+ebeb,U+e0a0-U+e0c8,U+e0ca,U+e0cc-U+e0d4,U+e200-U+e2a9,U+e300-U+e3e3,U+e5fa-U+e6b1,U+e700-U+e7c5,U+f000-U+f2e0,U+f300-U+f372,U+f400-U+f532,U+f0001-U+f1af0 Symbols Nerd Font Mono";
     };
   };
 
