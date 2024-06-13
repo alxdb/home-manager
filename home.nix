@@ -42,7 +42,7 @@
     };
     initExtra = ''
       function vf() {
-        vi +":lua require('telescope.builtin').fd {default_text = '$1' }"
+        vi +":lua require('telescope.builtin').fd { default_text = '$1', file_ignore_patterns = { '.git$', '.git/' }, hidden = true }"
       }
     '';
   };
