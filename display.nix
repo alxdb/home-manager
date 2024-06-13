@@ -92,6 +92,16 @@
         gaps = {
           inner = 10;
         };
+        workspaceOutputAssign = [
+          {
+            output = "DP-1";
+            workspace = "1";
+          }
+          {
+            output = "DP-2";
+            workspace = "0";
+          }
+        ];
       };
     };
     hyprland = {
