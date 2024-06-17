@@ -89,6 +89,7 @@
 
   programs.tmux = {
     enable = true;
+    terminal = "tmux-256color";
     catppuccin.enable = true;
     prefix = "C-a";
   };
