@@ -30,7 +30,7 @@
         # the path to your home.nix.
         modules = [
           ./home.nix
-          ./display.nix
+          ./apps.nix
           catppuccin.homeManagerModules.catppuccin
         ];
 

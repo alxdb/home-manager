@@ -5,9 +5,20 @@
   home.username = "alxdb";
   home.homeDirectory = "/home/alxdb";
 
+  # Allows unfree
+  nixpkgs.config.allowUnfree = true;
+  # Accept licenses
+  nixpkgs.config.input-fonts.acceptLicense = true;
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = with pkgs; [ htop ];
+  home.packages = with pkgs; [
+    htop
+    spotify
+    # Fonts
+    input-fonts
+    (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+  ];
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'.
@@ -19,6 +30,11 @@
   # Catppuccin flavour 
   catppuccin.flavour = "mocha";
   catppuccin.accent = "lavender";
+
+  # Font configuration
+  fonts.fontconfig = {
+    enable = true;
+  };
 
   # Shell configuration
   programs.zsh = {
