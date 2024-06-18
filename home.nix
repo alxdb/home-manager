@@ -1,5 +1,5 @@
 { pkgs, ... }:
-{
+rec {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "alxdb";
@@ -17,6 +17,7 @@
     spotify
     # Fonts
     input-fonts
+    jetbrains-mono
     (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
   ];
 
@@ -151,11 +152,6 @@
     recursive = true;
   };
 
-  programs.helix = {
-    enable = true;
-    catppuccin.enable = true;
-  };
-
   # VCS configuration
   programs.git = {
     enable = true;
@@ -190,6 +186,14 @@
   programs.lazygit = {
     enable = true;
     catppuccin.enable = true;
+  };
+
+  # user-dirs
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = false;
+    download = "${home.homeDirectory}/downloads";
+    documents = "${home.homeDirectory}/documents";
   };
 
   # You should not change this value, even if you update Home Manager.
