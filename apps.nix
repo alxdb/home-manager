@@ -1,5 +1,7 @@
-{ ... }:
+{ pkgs, ... }:
 {
+  home.packages = with pkgs; [ spotify ];
+
   # You'll need this
   programs.kitty = {
     enable = true;

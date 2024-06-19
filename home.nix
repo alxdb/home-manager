@@ -14,7 +14,6 @@ rec {
   # environment.
   home.packages = with pkgs; [
     htop
-    spotify
     # Fonts
     input-fonts
     jetbrains-mono
