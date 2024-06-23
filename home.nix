@@ -193,6 +193,8 @@ rec {
     createDirectories = false;
     download = "${home.homeDirectory}/downloads";
     documents = "${home.homeDirectory}/documents";
+    desktop = "${home.homeDirectory}/desktop";
+    pictures = "${home.homeDirectory}/pictures";
   };
 
   # You should not change this value, even if you update Home Manager.
