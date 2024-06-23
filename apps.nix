@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs; [ spotify ];
+  home.packages = with pkgs; [ htop ];
 
   # You'll need this
   programs.kitty = {
