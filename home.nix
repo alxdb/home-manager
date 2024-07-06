@@ -56,11 +56,12 @@ rec {
       g = "git";
       gl = "lazygit";
     };
-    initExtra = ''
-      function vf() {
-        vi +":lua require('telescope.builtin').fd { default_text = '$1', file_ignore_patterns = { '.git$', '.git/' }, hidden = true }"
-      }
-    '';
+    initExtra = # bash
+      ''
+        function vf() {
+          vi +":lua require('telescope.builtin').fd { default_text = '$1', file_ignore_patterns = { '.git$', '.git/' }, hidden = true }"
+        }
+      '';
   };
   programs.starship = {
     enable = true;
