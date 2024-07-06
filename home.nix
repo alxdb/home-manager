@@ -168,6 +168,7 @@ rec {
     extraConfig = {
       init.defaultBranch = "main";
       diff.tool = "nvimdiff";
+      safe.directory = "*";
     };
     ignores = [
       ".envrc"
