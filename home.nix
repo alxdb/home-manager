@@ -28,7 +28,7 @@ rec {
   programs.home-manager.enable = true;
 
   # Catppuccin flavour 
-  catppuccin.flavour = "mocha";
+  catppuccin.flavor = "mocha";
   catppuccin.accent = "lavender";
 
   # Font configuration
