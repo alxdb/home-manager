@@ -18,6 +18,7 @@ rec {
     input-fonts
     jetbrains-mono
     (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+    wl-clipboard
   ];
 
   # Home Manager can also manage your environment variables through
