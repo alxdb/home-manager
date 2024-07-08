@@ -14,6 +14,7 @@
 
   # And this
   programs.chromium = {
+    package = pkgs.chromium.override { enableWideVine = true; };
     enable = true;
     commandLineArgs = [
       "--ozone-platform-hint=wayland"
