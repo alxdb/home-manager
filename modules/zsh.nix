@@ -6,18 +6,22 @@
 
     enableCompletion = true;
     autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
+    syntaxHighlighting = {
+      enable = true;
+      styles = {
+        path_pathseparator = "";
+        path_prefix_pathseparator = "";
+      };
+    };
     historySubstringSearch = {
       enable = true;
       searchUpKey = "$terminfo[kcuu1]";
       searchDownKey = "$terminfo[kcud1]";
     };
-
     defaultKeymap = "viins";
 
     shellAliases = {
       g = "git";
-      gl = "lazygit";
       hm = "home-manager";
     };
     initExtra = # bash
