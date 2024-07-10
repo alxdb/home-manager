@@ -31,6 +31,7 @@
         modules = [
           ./home.nix
           ./apps.nix
+          ./modules
           catppuccin.homeManagerModules.catppuccin
         ];
 
