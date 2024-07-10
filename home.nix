@@ -25,8 +25,11 @@ rec {
   ];
 
   # Catppuccin flavour 
-  catppuccin.flavor = "mocha";
-  catppuccin.accent = "lavender";
+  catppuccin = {
+    flavor = "mocha";
+    accent = "lavender";
+    enable = true;
+  };
 
   # Font configuration
   fonts.fontconfig = {

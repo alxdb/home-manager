@@ -29,7 +29,6 @@
   };
   programs.starship = {
     enable = true;
-    catppuccin.enable = true;
     settings = (import ./starship.nix);
   };
   programs.zoxide = {
@@ -49,12 +48,10 @@
   };
   programs.bat = {
     enable = true;
-    catppuccin.enable = true;
   };
   programs.tmux = {
     enable = true;
     terminal = "tmux-256color";
-    catppuccin.enable = true;
     prefix = "C-a";
   };
 }
