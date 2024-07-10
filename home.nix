@@ -24,9 +24,6 @@ rec {
     (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
   ];
 
-  # Environment variables
-  home.sessionVariables = { };
-
   # Catppuccin flavour 
   catppuccin.flavor = "mocha";
   catppuccin.accent = "lavender";
