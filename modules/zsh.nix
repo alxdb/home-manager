@@ -23,6 +23,7 @@
     shellAliases = {
       g = "git";
       hm = "home-manager";
+      hme = "(cd ~/.config/home-manager/ && vi flake.nix) && hm switch";
     };
     initExtra = # bash
       ''

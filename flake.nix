@@ -8,6 +8,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin.url = "github:catppuccin/nix";
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -15,6 +19,7 @@
       nixpkgs,
       home-manager,
       catppuccin,
+      nixvim,
       ...
     }:
     let
@@ -30,6 +35,7 @@
           ./home.nix
           ./modules
           catppuccin.homeManagerModules.catppuccin
+          nixvim.homeManagerModules.nixvim
         ];
       };
     };
