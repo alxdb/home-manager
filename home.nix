@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-rec {
+{ pkgs, ... }: rec {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
@@ -10,9 +9,7 @@ rec {
   # Allow non FOSS programs
   nixpkgs.config.allowUnfree = true;
   # Accept licenses for specific packages
-  nixpkgs.config = {
-    input-fonts.acceptLicense = true;
-  };
+  nixpkgs.config = { input-fonts.acceptLicense = true; };
 
   # Global packages
   home.packages = with pkgs; [
@@ -32,9 +29,7 @@ rec {
   };
 
   # Font configuration
-  fonts.fontconfig = {
-    enable = true;
-  };
+  fonts.fontconfig = { enable = true; };
 
   # user-dirs
   xdg.userDirs = {

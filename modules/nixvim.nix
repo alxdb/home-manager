@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   programs.nixvim = { helpers, ... }: {
     enable = true;
 
@@ -17,38 +16,40 @@
     extraPackages = with pkgs; [
       neovim-remote
       ripgrep # for Telescope live_grep
+      nixfmt-rfc-style # nix formatter (not installed by default)
     ];
 
     # Vim settings
-    globals = {
-      mapleader = " ";
-      laststatus = 3;
-    };
+    globals = { mapleader = " "; };
     opts = {
       foldlevelstart = 99;
       number = true;
       signcolumn = "number";
+      laststatus = 3;
     };
     keymaps = [
       {
         action = ":cd %:h<cr>";
         key = "<leader>cd";
+        mode = "n";
         options = {
           silent = true;
           desc = "change directory to current buffer";
         };
       }
       {
-        action = '':s/[a-z]\@<=[A-Z]/_\l\0/g<cr>'';
+        action = ":s/[a-z]\\@<=[A-Z]/_\\l\\0/g<cr>";
         key = "<leader>tc";
+        mode = "v";
         options = {
           silent = true;
           desc = "camel case to snake case";
         };
       }
       {
-        action = '':s/_\([a-z]\)/\u\1/g<cr>'';
+        action = ":s/_\\([a-z]\\)/\\u\\1/g<cr>";
         key = "<leader>tc";
+        mode = "v";
         options = {
           silent = true;
           desc = "snake case to camel case";
@@ -57,6 +58,7 @@
       {
         action = ":ZenMode<cr>";
         key = "<leader>wz";
+        mode = "n";
         options = {
           silent = true;
           desc = "toggle zen mode";
@@ -65,6 +67,7 @@
       {
         action = ":Neogit<cr>";
         key = "<leader>gg";
+        mode = "n";
         options = {
           silent = true;
           desc = "open neogit";
@@ -73,6 +76,7 @@
       {
         action = ":Neotree<cr>";
         key = "<leader>ft";
+        mode = "n";
         options = {
           silent = true;
           desc = "open neotree";
@@ -81,6 +85,7 @@
       {
         action = ":Gitsigns preview_hunk<cr>";
         key = "<leader>gp";
+        mode = "n";
         options = {
           silent = true;
           desc = "preview current hunk";
@@ -89,9 +94,28 @@
       {
         action = ":Bdelete<cr>";
         key = "<leader>bd";
+        mode = "n";
         options = {
           silent = true;
           desc = "delete buffer (keep windows)";
+        };
+      }
+      {
+        action = ":bp";
+        key = "H";
+        mode = "n";
+        options = {
+          silent = true;
+          desc = "previous buffer";
+        };
+      }
+      {
+        action = ":bn";
+        key = "L";
+        mode = "n";
+        options = {
+          silent = true;
+          desc = "next buffer";
         };
       }
     ];
@@ -114,8 +138,8 @@
             "diff"
             "diagnostics"
           ];
-          lualine_c = [];
-          lualine_x = ["filetype"];
+          lualine_c = [ ];
+          lualine_x = [ "filetype" ];
         };
       };
       bufferline = {
@@ -123,17 +147,14 @@
         showBufferCloseIcons = false;
       };
       noice.enable = true;
-      neo-tree = {
-        enable = true;
-        
-      };
+      neo-tree.enable = true;
       which-key.enable = true;
       zen-mode.enable = true;
-      neogit.enable = true;
-      gitsigns = {
+      neogit = {
         enable = true;
-
+        settings = { kind = "replace"; };
       };
+      gitsigns.enable = true;
       telescope = {
         enable = true;
         settings = {
@@ -165,9 +186,7 @@
       };
       toggleterm = {
         enable = true;
-        settings = {
-          open_mapping = ''[[<C-\>]]'';
-        };
+        settings = { open_mapping = "[[<C-\\>]]"; };
       };
       # language support
       treesitter = {
@@ -192,12 +211,12 @@
           };
           diagnostic = { gl = "open_float"; };
           extra = [{
-            action = helpers.mkRaw #lua
-            ''
-              function()
-                vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-              end
-            '';
+            action = helpers.mkRaw # lua
+              ''
+                function()
+                  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+                end
+              '';
             key = "<leader>li";
             mode = "n";
             options = {
@@ -209,9 +228,7 @@
         servers = {
           nil-ls = {
             enable = true;
-            settings = {
-              formatting.command = ["nixfmt"];
-            };
+            settings = { formatting.command = [ "nixfmt" ]; };
           };
           yamlls.enable = true;
           jsonls.enable = true;
@@ -231,7 +248,7 @@
           };
           hls = {
             enable = true;
-            filetypes = ["haskell" "lhaskell" "cabal"];
+            filetypes = [ "haskell" "lhaskell" "cabal" ];
             settings.haskell = {
               cabalFormattingProvider = "cabal-fmt";
               formattingProvider = "fourmolu";
@@ -244,7 +261,8 @@
         enable = true;
         sources = {
           formatting = {
-            prettierd.withArgs = /* lua */ ''{ filetypes = { "css", "yaml" } }'';
+            prettierd.withArgs = # lua
+              ''{ filetypes = { "css", "yaml" } }'';
           };
         };
       };
@@ -260,18 +278,25 @@
         autoEnableSources = true;
         settings = {
           mapping = {
-            "<C-Space>" = /* lua */ "cmp.mapping.complete()";
-            "<Esc>" = /* lua */ "cmp.mapping.close()";
-            "<CR>" = /* lua */ "cmp.mapping.confirm({ select = true })";
-            "<Tab>" =/* lua */ "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
-            "<C-n>" =/* lua */ "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
-            "<C-p>" =/* lua */ "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+            "<C-Space>" = # lua
+              "cmp.mapping.complete()";
+            "<Esc>" = # lua
+              "cmp.mapping.close()";
+            "<CR>" = # lua
+              "cmp.mapping.confirm({ select = true })";
+            "<Tab>" = # lua
+              "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+            "<C-n>" = # lua
+              "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+            "<C-p>" = # lua
+              "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
           };
-          snippet.expand = /* lua */ ''
-            function(args)
-              require("luasnip").lsp_expand(args.body)
-            end
-          '';
+          snippet.expand = # lua
+            ''
+              function(args)
+                require("luasnip").lsp_expand(args.body)
+              end
+            '';
           sources = [
             { name = "nvim_lsp"; }
             { name = "luasnip"; }

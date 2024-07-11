@@ -1,5 +1,4 @@
-{ ... }:
-{
+{ ... }: {
   programs.zsh = {
     enable = true;
     dotDir = ".config/zsh";
@@ -21,16 +20,10 @@
     defaultKeymap = "viins";
 
     shellAliases = {
-      g = "git";
-      hm = "home-manager";
-      hme = "(cd ~/.config/home-manager/ && vi flake.nix) && hm switch";
+      gg = "nvim '+Neogit'";
+      hm = # sh
+        "(cd ~/.config/home-manager/ && vi flake.nix) && home-manager switch && exec zsh";
     };
-    initExtra = # bash
-      ''
-        function vf() {
-          vi +":lua require('telescope.builtin').fd { default_text = '$1', file_ignore_patterns = { '.git$', '.git/' }, hidden = true }"
-        }
-      '';
   };
   programs.starship = {
     enable = true;
@@ -38,10 +31,7 @@
   };
   programs.zoxide = {
     enable = true;
-    options = [
-      "--cmd"
-      "cd"
-    ];
+    options = [ "--cmd" "cd" ];
   };
   programs.direnv = {
     enable = true;
@@ -51,9 +41,7 @@
     enable = true;
     enableAliases = true;
   };
-  programs.bat = {
-    enable = true;
-  };
+  programs.bat = { enable = true; };
   programs.tmux = {
     enable = true;
     terminal = "tmux-256color";
