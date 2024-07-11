@@ -14,11 +14,19 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, catppuccin, nixvim, ... }:
+  outputs =
+    {
+      nixpkgs,
+      home-manager,
+      catppuccin,
+      nixvim,
+      ...
+    }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-    in {
+    in
+    {
       homeConfigurations.alxdb = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 

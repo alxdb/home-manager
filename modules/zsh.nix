@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   programs.zsh = {
     enable = true;
     dotDir = ".config/zsh";
@@ -31,7 +32,10 @@
   };
   programs.zoxide = {
     enable = true;
-    options = [ "--cmd" "cd" ];
+    options = [
+      "--cmd"
+      "cd"
+    ];
   };
   programs.direnv = {
     enable = true;
@@ -41,7 +45,9 @@
     enable = true;
     enableAliases = true;
   };
-  programs.bat = { enable = true; };
+  programs.bat = {
+    enable = true;
+  };
   programs.tmux = {
     enable = true;
     terminal = "tmux-256color";
