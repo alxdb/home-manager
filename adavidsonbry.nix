@@ -1,9 +1,14 @@
-{ username, pkgs, ... }: {
+{ username, pkgs, ... }:
+{
   home.username = "${username}";
   home.homeDirectory = "/home/${username}";
 
   # Base packages (no program entry)
-  home.packages = with pkgs; [ htop pipx rustup ];
+  home.packages = with pkgs; [
+    htop
+    pipx
+    rustup
+  ];
 
   # Global colorscheme
   catppuccin = {
