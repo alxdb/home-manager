@@ -24,6 +24,13 @@
         nixfmt-rfc-style # nix formatter (not installed by default)
       ];
 
+      extraConfigLua = # lua
+        ''
+          require("overseer").setup()
+        '';
+
+      extraPlugins = with pkgs.vimPlugins; [ overseer-nvim ];
+
       # Vim settings
       globals = {
         mapleader = " ";
@@ -40,15 +47,7 @@
         foldlevel = 9999;
       };
       keymaps = [
-        {
-          action = ":cd %:h<cr>";
-          key = "<leader>cd";
-          mode = "n";
-          options = {
-            silent = true;
-            desc = "change directory to current buffer";
-          };
-        }
+        # Text Manipulation
         {
           action = ":s/[a-z]\\@<=[A-Z]/_\\l\\0/g<cr>";
           key = "<leader>tc";
@@ -67,49 +66,14 @@
             desc = "snake case to camel case";
           };
         }
+        # Shortcuts
         {
-          action = ":ZenMode<cr>";
-          key = "<leader>wz";
+          action = ":cd %:h<cr>";
+          key = "<leader>cd";
           mode = "n";
           options = {
             silent = true;
-            desc = "toggle zen mode";
-          };
-        }
-        {
-          action = ":Neogit<cr>";
-          key = "<leader>gg";
-          mode = "n";
-          options = {
-            silent = true;
-            desc = "open neogit";
-          };
-        }
-        {
-          action = ":Neotree<cr>";
-          key = "<leader>ft";
-          mode = "n";
-          options = {
-            silent = true;
-            desc = "open neotree";
-          };
-        }
-        {
-          action = ":Gitsigns preview_hunk<cr>";
-          key = "<leader>gp";
-          mode = "n";
-          options = {
-            silent = true;
-            desc = "preview current hunk";
-          };
-        }
-        {
-          action = ":Bdelete<cr>";
-          key = "<leader>bd";
-          mode = "n";
-          options = {
-            silent = true;
-            desc = "delete buffer (keep windows)";
+            desc = "change directory to current buffer";
           };
         }
         {
@@ -157,6 +121,61 @@
             desc = "exit";
           };
         }
+        # Commands
+        {
+          action = "<cmd>ZenMode<cr>";
+          key = "<leader>wz";
+          mode = "n";
+          options.desc = "toggle zen mode";
+        }
+        {
+          action = "<cmd>Neogit<cr>";
+          key = "<leader>gg";
+          mode = "n";
+          options.desc = "open neogit";
+        }
+        {
+          action = "<cmd>Neotree<cr>";
+          key = "<leader>ft";
+          mode = "n";
+          options.desc = "open neotree";
+        }
+        {
+          action = "<cmd>Gitsigns preview_hunk<cr>";
+          key = "<leader>gp";
+          mode = "n";
+          options.desc = "preview current hunk";
+        }
+        {
+          action = "<cmd>Bdelete<cr>";
+          key = "<leader>bd";
+          mode = "n";
+          options.desc = "delete buffer (keep windows)";
+        }
+        {
+          action = "<cmd>OverseerRun<cr>";
+          key = "<leader>tr";
+          mode = "n";
+          options.desc = "Run Task";
+        }
+        {
+          action = "<cmd>OverseerToggle<cr>";
+          key = "<leader>tt";
+          mode = "n";
+          options.desc = "View Tasks";
+        }
+        {
+          action = "<cmd>OverseerLoadBundle<cr>";
+          key = "<leader>tl";
+          mode = "n";
+          options.desc = "Load Task";
+        }
+        {
+          action = "<cmd>OverseerQuickAction<cr>";
+          key = "<leader>ta";
+          mode = "n";
+          options.desc = "Task Action";
+        }
       ];
 
       plugins = {
@@ -177,6 +196,7 @@
               }
               "diff"
               "diagnostics"
+              "overseer"
             ];
             lualine_c = [ ];
             lualine_x = [ "filetype" ];
@@ -241,6 +261,7 @@
             open_mapping = "[[<C-\\>]]";
           };
         };
+        trouble.enable = true;
         # language support
         treesitter = {
           enable = true;
@@ -261,6 +282,8 @@
               gd = "definition";
               gi = "implementation";
               gt = "type_definition";
+              "<leader>lr" = "rename";
+              "<leader>la" = "code_action";
             };
             diagnostic = {
               gl = "open_float";
@@ -344,8 +367,15 @@
             mapping = {
               "<C-Space>" = # lua
                 "cmp.mapping.complete()";
-              "<Esc>" = # lua
-                "cmp.mapping.close()";
+              # "<Esc>" = # lua
+              #   "cmp.mapping({
+              #     i = cmp.mapping.abort(),
+              #     c = function()
+              #       if cmp.visible() then
+              #         cmd.close()
+              #       else
+              #         
+              #   })";
               "<CR>" = # lua
                 "cmp.mapping.confirm({ select = true })";
               "<Tab>" = # lua
