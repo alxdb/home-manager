@@ -27,16 +27,36 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in
     {
-      homeConfigurations.alxdb = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations."alxdb@pm.me" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
         modules = [
+          ./alxdb.nix
+          ./modules
           ./apps.nix
-          ./home.nix
+          catppuccin.homeManagerModules.catppuccin
+          nixvim.homeManagerModules.nixvim
+        ];
+
+        extraSpecialArgs = {
+          username = "alxdb";
+          domain = "pm.me";
+        };
+      };
+      homeConfigurations."adavidsonbry@bloomberg.net" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+
+        modules = [
+          ./adavidsonbry.nix
           ./modules
           catppuccin.homeManagerModules.catppuccin
           nixvim.homeManagerModules.nixvim
         ];
+
+        extraSpecialArgs = {
+          username = "adavidsonbry";
+          domain = "bloomberg.net";
+        };
       };
     };
 }

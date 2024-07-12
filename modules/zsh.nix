@@ -1,4 +1,4 @@
-{ ... }:
+{ username, domain, ... }:
 {
   programs.zsh = {
     enable = true;
@@ -23,7 +23,7 @@
     shellAliases = {
       gg = "nvim '+Neogit'";
       hm = # sh
-        "(cd ~/.config/home-manager/ && vi flake.nix) && home-manager switch && exec zsh";
+        "(cd ~/.config/home-manager/ && vi flake.nix) && home-manager switch --flake .#${username}@#${domain} && exec zsh";
     };
   };
   programs.starship = {

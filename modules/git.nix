@@ -1,9 +1,9 @@
-{ ... }:
+{ username, domain, ... }:
 {
   programs.git = {
     enable = true;
-    userName = "Alexander Davidson Bryan";
-    userEmail = "alxdb@pm.me";
+    userName = "${username}";
+    userEmail = "${username}@${domain}";
     extraConfig = {
       init.defaultBranch = "main";
       diff.tool = "nvimdiff";
@@ -20,6 +20,4 @@
       git_protocol = "ssh";
     };
   };
-  programs.ssh.enable = true;
-  services.ssh-agent.enable = true;
 }

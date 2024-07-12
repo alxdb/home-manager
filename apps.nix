@@ -26,4 +26,8 @@
       { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # ublock origin
     ];
   };
+
+  # Use an ssh agent
+  programs.ssh.enable = true;
+  services.ssh-agent.enable = true;
 }
