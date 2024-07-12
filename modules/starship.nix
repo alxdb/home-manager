@@ -1,5 +1,4 @@
 {
-  format = "$all$directory$character";
   aws = {
     symbol = "  ";
   };
