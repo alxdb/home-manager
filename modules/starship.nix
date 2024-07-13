@@ -79,7 +79,7 @@
   };
   nix_shell = {
     symbol = " ";
-    format = "via [$symbol]($style)";
+    format = "via [$symbol]($style) ";
   };
   nodejs = {
     symbol = " ";
