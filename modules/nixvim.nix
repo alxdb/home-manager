@@ -22,6 +22,7 @@
         neovim-remote
         ripgrep # for Telescope live_grep
         nixfmt-rfc-style # nix formatter (not installed by default)
+        haskell-language-server
       ];
 
       extraConfigLua = # lua
@@ -29,11 +30,26 @@
           require("overseer").setup()
         '';
 
-      extraPlugins = with pkgs.vimPlugins; [ overseer-nvim ];
+      extraPlugins = with pkgs.vimPlugins; [
+        overseer-nvim
+        haskell-tools-nvim
+      ];
 
       # Vim settings
       globals = {
         mapleader = " ";
+        haskell_tools = {
+          tools = {
+            repl = {
+              handler = "toggleterm";
+            };
+          };
+          hls = {
+            on_attach =
+              helpers.mkRaw # lua
+                ''function(client, bufnr, ht) require("lsp-format").on_attach(client) end'';
+          };
+        };
       };
       opts = {
         number = true;
@@ -207,6 +223,7 @@
           showBufferCloseIcons = false;
         };
         noice.enable = true;
+        notify.enable = true;
         neo-tree.enable = true;
         which-key.enable = true;
         zen-mode.enable = true;
@@ -253,6 +270,9 @@
               action = "commands";
               options.desc = "telescope: commands";
             };
+          };
+          extensions = {
+            ui-select.enable = true;
           };
         };
         toggleterm = {
@@ -329,18 +349,6 @@
               installCargo = false;
               installRustc = false;
             };
-            hls = {
-              enable = true;
-              filetypes = [
-                "haskell"
-                "lhaskell"
-                "cabal"
-              ];
-              settings.haskell = {
-                cabalFormattingProvider = "cabal-fmt";
-                formattingProvider = "fourmolu";
-              };
-            };
           };
         };
         lsp-format.enable = true;
@@ -367,15 +375,6 @@
             mapping = {
               "<C-Space>" = # lua
                 "cmp.mapping.complete()";
-              # "<Esc>" = # lua
-              #   "cmp.mapping({
-              #     i = cmp.mapping.abort(),
-              #     c = function()
-              #       if cmp.visible() then
-              #         cmd.close()
-              #       else
-              #         
-              #   })";
               "<CR>" = # lua
                 "cmp.mapping.confirm({ select = true })";
               "<Tab>" = # lua
