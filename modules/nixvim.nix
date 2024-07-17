@@ -139,6 +139,12 @@
         }
         # Commands
         {
+          action = "<cmd>FormatToggle<cr>";
+          key = "<leader>lf";
+          mode = "n";
+          options.desc = "toggle auto format";
+        }
+        {
           action = "<cmd>ZenMode<cr>";
           key = "<leader>wz";
           mode = "n";
@@ -297,16 +303,40 @@
           enable = true;
           keymaps = {
             lspBuf = {
-              K = "hover";
-              gr = "references";
-              gd = "definition";
-              gi = "implementation";
-              gt = "type_definition";
-              "<leader>lr" = "rename";
-              "<leader>la" = "code_action";
+              K = {
+                action = "hover";
+                desc = "lsp: hover";
+              };
+              gr = {
+                action = "references";
+                desc = "lsp: references";
+              };
+              gd = {
+                action = "definition";
+                desc = "lsp: definition";
+              };
+              gi = {
+                action = "implementation";
+                desc = "lsp: implementation";
+              };
+              gt = {
+                action = "type_definition";
+                desc = "lsp: type definition";
+              };
+              "<leader>lr" = {
+                action = "rename";
+                desc = "lsp: rename";
+              };
+              "<leader>la" = {
+                action = "code_action";
+                desc = "lsp: code action";
+              };
             };
             diagnostic = {
-              gl = "open_float";
+              gl = {
+                action = "open_float";
+                desc = "lsp: open diagnostics float";
+              };
             };
             extra = [
               {
@@ -341,7 +371,10 @@
               settings.plugins = {
                 pycodestyle.enabled = false;
                 ruff.enabled = true;
-                pylsp_mypy.enabled = true;
+                pylsp_mypy = {
+                  enabled = true;
+                  report_progress = true;
+                };
               };
             };
             rust-analyzer = {
@@ -351,13 +384,29 @@
             };
           };
         };
-        lsp-format.enable = true;
+        lsp-format = {
+          enable = true;
+          setup = {
+            toml.sync = true;
+          };
+        };
         none-ls = {
           enable = true;
           sources = {
             formatting = {
-              prettierd.withArgs = # lua
-                ''{ filetypes = { "css", "yaml" } }'';
+              prettierd = {
+                enable = true;
+                settings = # lua
+                  ''{ filetypes = { "css", "yaml" } }'';
+              };
+            };
+            diagnostics = {
+              codespell = {
+                enable = true;
+                settings = {
+                  extra_args = [ "-L noice" ];
+                };
+              };
             };
           };
         };
