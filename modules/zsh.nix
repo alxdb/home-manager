@@ -52,5 +52,13 @@
     enable = true;
     terminal = "tmux-256color";
     prefix = "C-a";
+    keyMode = "vi";
+    customPaneNavigationAndResize = true;
+    reverseSplit = true;
+    catppuccin.extraConfig = # tmux
+      ''
+        set -g @catppuccin_status_left_separator "█"
+        set -g @catppuccin_status_modules_right "session date_time"
+      '';
   };
 }
