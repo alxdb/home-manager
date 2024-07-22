@@ -1,4 +1,9 @@
-{ username, domain, ... }:
+{
+  username,
+  domain,
+  pkgs,
+  ...
+}:
 {
   programs.zsh = {
     enable = true;
@@ -51,6 +56,7 @@
   programs.tmux = {
     enable = true;
     terminal = "tmux-256color";
+    shell = "${pkgs.zsh}/bin/zsh";
     prefix = "C-a";
     keyMode = "vi";
     customPaneNavigationAndResize = true;
