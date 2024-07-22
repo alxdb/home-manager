@@ -230,7 +230,12 @@
         };
         noice.enable = true;
         notify.enable = true;
-        neo-tree.enable = true;
+        neo-tree = {
+          enable = true;
+          filesystem = {
+            groupEmptyDirs = true;
+          };
+        };
         which-key.enable = true;
         zen-mode.enable = true;
         neogit = {
