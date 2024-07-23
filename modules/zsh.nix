@@ -61,6 +61,11 @@
     keyMode = "vi";
     customPaneNavigationAndResize = true;
     reverseSplit = true;
+    mouse = true;
+    extraConfig = # tmux
+      ''
+        set -ag terminal-overrides ",*:RGB"
+      '';
     catppuccin.extraConfig = # tmux
       ''
         set -g @catppuccin_status_left_separator "█"
