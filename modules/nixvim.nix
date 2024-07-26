@@ -229,7 +229,6 @@
           showBufferCloseIcons = false;
         };
         noice.enable = true;
-        notify.enable = true;
         neo-tree = {
           enable = true;
           filesystem = {
