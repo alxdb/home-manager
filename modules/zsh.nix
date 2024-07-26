@@ -20,8 +20,8 @@
     };
     historySubstringSearch = {
       enable = true;
-      searchUpKey = "^[[A";
-      searchDownKey = "^[[B";
+      searchUpKey = if username == "adavidsonbry" then "^[[A" else "$terminfo[kcuu1]";
+      searchDownKey = if username == "adavidsonbry" then "^[[B" else "$terminfo[kcud1]";
     };
     defaultKeymap = "viins";
 
