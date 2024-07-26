@@ -20,8 +20,8 @@
     };
     historySubstringSearch = {
       enable = true;
-      searchUpKey = "$terminfo[kcuu1]";
-      searchDownKey = "$terminfo[kcud1]";
+      searchUpKey = "^[[A";
+      searchDownKey = "^[[B";
     };
     defaultKeymap = "viins";
 
