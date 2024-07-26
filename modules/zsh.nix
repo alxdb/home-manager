@@ -49,6 +49,17 @@
   programs.lsd = {
     enable = true;
     enableAliases = true;
+    settings = {
+      blocks = [
+        "permission"
+        "user"
+        "group"
+        "size"
+        "date"
+        "name"
+        "git"
+      ];
+    };
   };
   programs.bat = {
     enable = true;
