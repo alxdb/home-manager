@@ -408,7 +408,7 @@
               codespell = {
                 enable = true;
                 settings = {
-                  extra_args = [ "-L noice" ];
+                  extra_args = [ "-L noice,shouldBe" ];
                 };
               };
             };
