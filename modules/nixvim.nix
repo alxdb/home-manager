@@ -47,7 +47,11 @@
           hls = {
             on_attach =
               helpers.mkRaw # lua
-                ''function(client, bufnr, ht) require("lsp-format").on_attach(client) end'';
+                ''
+                  function(client, bufnr, ht) 
+                    require("lsp-format").on_attach(client) 
+                  end
+                '';
           };
         };
       };
