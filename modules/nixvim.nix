@@ -298,7 +298,10 @@
           folding = true;
           settings = {
             highlight.enable = true;
-            indent.enable = true;
+            indent = {
+              enable = true;
+              disable = [ "yaml" ];
+            };
             incremental_selection.enable = true;
           };
         };
