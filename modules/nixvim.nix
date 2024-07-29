@@ -58,6 +58,9 @@
       opts = {
         number = true;
         signcolumn = "number";
+        # Default indentation (overridden by sleuth)
+        tabstop = 4;
+        shiftwidth = 4;
         # Global statusbar
         laststatus = 3;
         # Treesitter folds
