@@ -33,6 +33,7 @@
       extraPlugins = with pkgs.vimPlugins; [
         overseer-nvim
         haskell-tools-nvim
+        nlsp-settings-nvim
       ];
 
       # Vim settings
@@ -68,6 +69,7 @@
         foldexpr = "nvim_treesitter#foldexpr()";
         foldenable = true;
         foldlevel = 9999;
+        exrc = true;
       };
       keymaps = [
         # Text Manipulation
@@ -398,6 +400,8 @@
               installCargo = false;
               installRustc = false;
             };
+            cmake.enable = true;
+            clangd.enable = true;
           };
         };
         lsp-format = {
