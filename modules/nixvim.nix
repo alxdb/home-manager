@@ -244,12 +244,14 @@
         };
         which-key.enable = true;
         zen-mode.enable = true;
+        diffview.enable = true;
         neogit = {
           enable = true;
           settings = {
             kind = "replace";
           };
         };
+        git-conflict.enable = true;
         gitsigns.enable = true;
         telescope = {
           enable = true;
