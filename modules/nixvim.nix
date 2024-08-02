@@ -303,6 +303,13 @@
           };
         };
         trouble.enable = true;
+        neotest = {
+          enable = true;
+          adapters = {
+            python.enable = true;
+            gtest.enable = true;
+          };
+        };
         # language support
         treesitter = {
           enable = true;
