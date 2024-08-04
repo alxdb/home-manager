@@ -308,6 +308,7 @@
           adapters = {
             python.enable = true;
             gtest.enable = true;
+            haskell.enable = true;
           };
         };
         # language support
