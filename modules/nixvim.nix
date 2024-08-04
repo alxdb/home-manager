@@ -25,10 +25,9 @@
         haskell-language-server
       ];
 
-      extraConfigLua = # lua
-        ''
-          require("overseer").setup()
-        '';
+      extraConfigLua = ''
+        require("overseer").setup()
+      '';
 
       extraPlugins = with pkgs.vimPlugins; [
         overseer-nvim
@@ -46,13 +45,11 @@
             };
           };
           hls = {
-            on_attach =
-              helpers.mkRaw # lua
-                ''
-                  function(client, bufnr, ht) 
-                    require("lsp-format").on_attach(client) 
-                  end
-                '';
+            on_attach = helpers.mkRaw ''
+              function(client, bufnr, ht) 
+                require("lsp-format").on_attach(client) 
+              end
+            '';
           };
         };
       };
@@ -366,13 +363,11 @@
             };
             extra = [
               {
-                action =
-                  helpers.mkRaw # lua
-                    ''
-                      function()
-                        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-                      end
-                    '';
+                action = helpers.mkRaw ''
+                  function()
+                    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+                  end
+                '';
                 key = "<leader>li";
                 mode = "n";
                 options = {
@@ -424,8 +419,7 @@
             formatting = {
               prettierd = {
                 enable = true;
-                settings = # lua
-                  ''{ filetypes = { "css", "yaml" } }'';
+                settings = ''{ filetypes = { "css", "yaml" } }'';
               };
             };
             diagnostics = {
@@ -450,23 +444,18 @@
           autoEnableSources = true;
           settings = {
             mapping = {
-              "<C-Space>" = # lua
-                "cmp.mapping.complete()";
-              "<CR>" = # lua
-                "cmp.mapping.confirm({ select = true })";
-              "<Tab>" = # lua
-                "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
-              "<C-n>" = # lua
-                "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
-              "<C-p>" = # lua
-                "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+              "<C-Space>" = "cmp.mapping.complete()";
+              "<CR>" = "cmp.mapping.confirm({ select = true })";
+              "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+              "<C-n>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+              "<C-p>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+              "<C-f>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
             };
-            snippet.expand = # lua
-              ''
-                function(args)
-                  require("luasnip").lsp_expand(args.body)
-                end
-              '';
+            snippet.expand = ''
+              function(args)
+                require("luasnip").lsp_expand(args.body)
+              end
+            '';
             sources = [
               { name = "nvim_lsp"; }
               { name = "luasnip"; }
