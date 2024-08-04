@@ -18,6 +18,7 @@ rec {
   home.packages = with pkgs; [
     htop
     wl-clipboard
+    trashy
     # Fonts
     input-fonts
     jetbrains-mono
