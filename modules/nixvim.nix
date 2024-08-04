@@ -432,7 +432,7 @@
               codespell = {
                 enable = true;
                 settings = {
-                  extra_args = [ "-L noice,shouldBe" ];
+                  extra_args = [ "-L noice,shouldBe,crate" ];
                 };
               };
             };
