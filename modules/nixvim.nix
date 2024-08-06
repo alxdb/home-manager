@@ -175,6 +175,12 @@
           options.desc = "preview current hunk";
         }
         {
+          action = "<cmd>Gitsigns reset_hunk<cr>";
+          key = "<leader>gr";
+          mode = "n";
+          options.desc = "reset current hunk";
+        }
+        {
           action = "<cmd>Bdelete<cr>";
           key = "<leader>bd";
           mode = "n";
