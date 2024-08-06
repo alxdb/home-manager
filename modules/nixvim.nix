@@ -405,6 +405,15 @@
             };
             cmake.enable = true;
             clangd.enable = true;
+            zls = {
+              enable = true;
+              settings.zls = {
+                enable_build_on_save = true;
+                warn_style = true;
+                highlight_global_var_declarations = true;
+                enable_autofix = true;
+              };
+            };
           };
         };
         lsp-format = {
