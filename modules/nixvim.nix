@@ -208,7 +208,19 @@
           action = "<cmd>OverseerQuickAction<cr>";
           key = "<leader>ta";
           mode = "n";
-          options.desc = "Task Action";
+          options.desc = "task action";
+        }
+        {
+          action = "<cmd>ToggleTerm direction=vertical<cr>";
+          key = "<leader>\v";
+          mode = "n";
+          options.desc = "toggleterm: vertical";
+        }
+        {
+          action = "<cmd>ToggleTerm direction=float<cr>";
+          key = "<leader>\f";
+          mode = "n";
+          options.desc = "toggleterm: float";
         }
       ];
 
@@ -303,6 +315,15 @@
           enable = true;
           settings = {
             open_mapping = "[[<C-\\>]]";
+            size = ''
+              function(term)
+                if term.direction == "horizontal" then
+                  return 35
+                elseif term.direction == "vertical" then
+                  return vim.o.columns * 0.4
+                end
+              end
+            '';
           };
         };
         trouble.enable = true;
