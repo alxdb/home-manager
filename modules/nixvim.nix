@@ -190,19 +190,19 @@
           action = "<cmd>OverseerRun<cr>";
           key = "<leader>tr";
           mode = "n";
-          options.desc = "Run Task";
+          options.desc = "run Task";
         }
         {
           action = "<cmd>OverseerToggle<cr>";
           key = "<leader>tt";
           mode = "n";
-          options.desc = "View Tasks";
+          options.desc = "view Tasks";
         }
         {
           action = "<cmd>OverseerLoadBundle<cr>";
           key = "<leader>tl";
           mode = "n";
-          options.desc = "Load Task";
+          options.desc = "load Task";
         }
         {
           action = "<cmd>OverseerQuickAction<cr>";
