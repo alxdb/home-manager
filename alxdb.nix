@@ -22,6 +22,7 @@ rec {
     # Fonts
     input-fonts
     jetbrains-mono
+    iosevka-comfy.comfy-wide-fixed
     (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
   ];
 
