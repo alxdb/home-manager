@@ -212,13 +212,13 @@
         }
         {
           action = "<cmd>ToggleTerm direction=vertical<cr>";
-          key = "<leader>\v";
+          key = "<leader>\\v";
           mode = "n";
           options.desc = "toggleterm: vertical";
         }
         {
           action = "<cmd>ToggleTerm direction=float<cr>";
-          key = "<leader>\f";
+          key = "<leader>\\f";
           mode = "n";
           options.desc = "toggleterm: float";
         }
