@@ -431,7 +431,13 @@
               installRustc = false;
             };
             cmake.enable = true;
-            clangd.enable = true;
+            clangd = {
+              enable = true;
+              filetypes = [
+                "c"
+                "cpp"
+              ];
+            };
             zls = {
               enable = true;
               settings.zls = {
@@ -441,8 +447,11 @@
                 enable_autofix = true;
               };
             };
+            gopls.enable = true;
+            bufls.enable = true;
           };
         };
+        typescript-tools.enable = true;
         lsp-format = {
           enable = true;
           setup = {
@@ -457,6 +466,7 @@
                 enable = true;
                 settings = ''{ filetypes = { "css", "yaml" } }'';
               };
+              buf.enable = true;
             };
             diagnostics = {
               codespell = {
@@ -470,7 +480,7 @@
         };
         luasnip = {
           enable = true;
-          extraConfig = {
+          settings = {
             enable_autosnippets = true;
             store_selection_keys = "<Tab>";
           };

@@ -26,6 +26,11 @@ rec {
     (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
   ];
 
+  # Global environment
+  home.sessionVariables = {
+    GOPATH = "${home.homeDirectory}/.go";
+  };
+
   # Catppuccin flavour 
   catppuccin = {
     flavor = "mocha";
