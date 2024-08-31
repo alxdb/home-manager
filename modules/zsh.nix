@@ -29,6 +29,7 @@
       gg = "nvim '+Neogit'";
       hm = # sh
         ''(cd ~/.config/home-manager/ && vi flake.nix && home-manager switch --flake .#${username}@${domain}) && exec zsh'';
+      cat = "bat";
     };
   };
   programs.starship = {
