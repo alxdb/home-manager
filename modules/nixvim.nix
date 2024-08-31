@@ -426,11 +426,6 @@
                 };
               };
             };
-            rust-analyzer = {
-              enable = true;
-              installCargo = false;
-              installRustc = false;
-            };
             cmake.enable = true;
             clangd = {
               enable = true;
@@ -453,6 +448,7 @@
           };
         };
         typescript-tools.enable = true;
+        rustaceanvim.enable = true;
         lsp-format = {
           enable = true;
           setup = {
