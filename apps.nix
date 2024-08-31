@@ -12,6 +12,10 @@
       tab_bar_style = "powerline";
       tab_bar_edge = "top";
     };
+    # TODO: upstream to allow for multiple entries in settings.
+    extraConfig = ''
+      symbol_map U+276F,U+276E JetBrains Mono
+    '';
   };
 
   # And this
