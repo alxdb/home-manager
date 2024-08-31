@@ -1,5 +1,6 @@
 { pkgs, ... }:
 {
+  # TODO: upstream manual config
   programs.nixvim =
     { helpers, ... }:
     {
