@@ -229,7 +229,7 @@
         # editing
         sleuth.enable = true;
         surround.enable = true;
-        autoclose.enable = true;
+        nvim-autopairs.enable = true;
         bufdelete.enable = true;
         better-escape.enable = true;
         # user interface
