@@ -448,7 +448,16 @@
           };
         };
         typescript-tools.enable = true;
-        rustaceanvim.enable = true;
+        rustaceanvim = {
+          enable = true;
+          settings = {
+            tools = {
+              executor = "toggleterm";
+              test_executor = "neotest";
+              crate_test_executor = "neotest";
+            };
+          };
+        };
         lsp-format = {
           enable = true;
           setup = {
