@@ -34,6 +34,7 @@
           ./alxdb.nix
           ./modules
           ./apps.nix
+          ./modules/zed.nix
           catppuccin.homeManagerModules.catppuccin
           nixvim.homeManagerModules.nixvim
         ];

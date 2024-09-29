@@ -228,17 +228,18 @@
       plugins = {
         # editing
         sleuth.enable = true;
-        surround.enable = true;
+        vim-surround.enable = true;
         nvim-autopairs.enable = true;
         bufdelete.enable = true;
         better-escape.enable = true;
         # user interface
+        web-devicons.enable = true;
         lualine = {
           enable = true;
-          sections = {
+          settings.sections = {
             lualine_b = [
               {
-                name = "branch";
+                __unkeyed = "branch";
                 icon = "";
               }
               "diff"
@@ -251,7 +252,7 @@
         };
         bufferline = {
           enable = true;
-          showBufferCloseIcons = false;
+          settings.options.show_buffer_close_icons = false;
         };
         noice.enable = true;
         neo-tree = {
