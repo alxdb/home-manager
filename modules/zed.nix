@@ -1,4 +1,4 @@
 { pkgs, ... }:
 {
-  home.packages = [ pkgs.zed-editor ];
+  home.packages = [ pkgs.zed-editor.fhs ];
 }
