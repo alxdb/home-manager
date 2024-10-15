@@ -430,6 +430,7 @@
             cmake.enable = true;
             clangd = {
               enable = true;
+              package = null;
               filetypes = [
                 "c"
                 "cpp"
