@@ -449,6 +449,7 @@
             bufls.enable = true;
           };
         };
+        # Extra language plugins
         typescript-tools.enable = true;
         rustaceanvim = {
           enable = true;
@@ -460,6 +461,7 @@
             };
           };
         };
+        # LSP extensions
         lsp-format = {
           enable = true;
           setup = {
