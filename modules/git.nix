@@ -15,7 +15,7 @@
     ];
   };
   programs.gh = {
-    enable = true;
+    enable = username == "alxdb";
     settings = {
       git_protocol = "ssh";
     };
