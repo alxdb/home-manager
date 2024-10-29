@@ -12,6 +12,7 @@
       viAlias = true;
       vimAlias = true;
 
+      # Colorscheme
       colorschemes.catppuccin = {
         enable = true;
         settings = {
@@ -19,6 +20,7 @@
         };
       };
 
+      # Ad-hoc config
       extraPackages = with pkgs; [
         neovim-remote
         ripgrep # for Telescope live_grep
@@ -26,17 +28,33 @@
         haskell-language-server
       ];
 
-      extraConfigLua = ''
-        require("overseer").setup()
-      '';
-
       extraPlugins = with pkgs.vimPlugins; [
         overseer-nvim
         haskell-tools-nvim
         nlsp-settings-nvim
       ];
 
-      # Vim settings
+      extraConfigLuaPre = ''
+        function autoformat_hook(client, bufnr)
+          if client.supports_method('textDocument/formatting') then
+            -- Format the current buffer on save
+            vim.api.nvim_create_autocmd('BufWritePre', {
+              buffer = bufnr,
+              callback = function()
+                if vim.g.autoformat == 1 then
+                  vim.lsp.buf.format({bufnr = bufnr, id = client.id})
+                end
+              end,
+            })
+          end
+        end
+      '';
+
+      extraConfigLua = ''
+        require("overseer").setup()
+      '';
+
+      # Options & Globals
       globals = {
         mapleader = " ";
         haskell_tools = {
@@ -53,13 +71,16 @@
             '';
           };
         };
+        autoformat = 1;
       };
+
       opts = {
         number = true;
         signcolumn = "number";
         # Default indentation (overridden by sleuth)
-        tabstop = 4;
-        shiftwidth = 4;
+        tabstop = 2;
+        shiftwidth = 2;
+        expandtab = true;
         # Global statusbar
         laststatus = 3;
         # Treesitter folds
@@ -69,6 +90,8 @@
         foldlevel = 9999;
         exrc = true;
       };
+
+      # Key Mappings
       keymaps = [
         # Text Manipulation
         {
@@ -144,13 +167,14 @@
             desc = "exit";
           };
         }
-        # Commands
+        # Custom
         {
-          action = "<cmd>FormatToggle<cr>";
+          action = ":let g:autoformat=!g:autoformat<cr>";
           key = "<leader>lf";
           mode = "n";
           options.desc = "toggle auto format";
         }
+        # Commands
         {
           action = "<cmd>ZenMode<cr>";
           key = "<leader>wz";
@@ -225,13 +249,33 @@
         }
       ];
 
+      # AutoCmd
+      autoCmd = [
+        {
+          callback = helpers.mkRaw ''
+            function(args)
+              vim.keymap.set('n', '<leader>lrd', '<cmd>RustLsp openDocs<cr>', { buffer = args.buf })
+            end
+          '';
+          event = [
+            "BufEnter"
+            "BufWinEnter"
+          ];
+          pattern = [
+            "*.rs"
+          ];
+        }
+      ];
+
       plugins = {
         # editing
         sleuth.enable = true;
         vim-surround.enable = true;
-        nvim-autopairs.enable = true;
+        autoclose.enable = true;
         bufdelete.enable = true;
         better-escape.enable = true;
+        ts-autotag.enable = true;
+        ts-comments.enable = true;
         # user interface
         web-devicons.enable = true;
         lualine = {
@@ -406,8 +450,9 @@
               }
             ];
           };
+          onAttach = "autoformat_hook(client, bufnr)";
           servers = {
-            nil-ls = {
+            nil_ls = {
               enable = true;
               settings = {
                 formatting.command = [ "nixfmt" ];
@@ -447,6 +492,10 @@
             };
             gopls.enable = true;
             bufls.enable = true;
+            wgsl_analyzer = {
+              enable = true;
+              package = null;
+            };
           };
         };
         # Extra language plugins
@@ -462,19 +511,16 @@
           };
         };
         # LSP extensions
-        lsp-format = {
-          enable = true;
-          setup = {
-            toml.sync = true;
-          };
-        };
         none-ls = {
           enable = true;
+          settings = {
+            on_attach = "autoformat_hook";
+          };
           sources = {
             formatting = {
               prettierd = {
                 enable = true;
-                settings = ''{ filetypes = { "css", "yaml" } }'';
+                settings = ''{ filetypes = { "json", "yaml", "css", "html" } }'';
               };
               buf.enable = true;
             };
