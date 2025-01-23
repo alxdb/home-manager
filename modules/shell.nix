@@ -83,4 +83,10 @@
         set -g @catppuccin_status_modules_right "session date_time"
       '';
   };
+  programs.gh = {
+    enable = true;
+    settings = {
+      git_protocol = "ssh";
+    };
+  };
 }
