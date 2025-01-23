@@ -1,6 +1,4 @@
 {
-  username,
-  domain,
   pkgs,
   ...
 }:
@@ -20,15 +18,15 @@
     };
     historySubstringSearch = {
       enable = true;
-      searchUpKey = if username == "adavidsonbry" then "^[[A" else "$terminfo[kcuu1]";
-      searchDownKey = if username == "adavidsonbry" then "^[[B" else "$terminfo[kcud1]";
+      searchUpKey = "$terminfo[kcuu1]";
+      searchDownKey = "$terminfo[kcud1]";
     };
     defaultKeymap = "viins";
 
     shellAliases = {
       gg = "nvim '+Neogit'";
       hm = # sh
-        ''(cd ~/.config/home-manager/ && vi flake.nix && home-manager switch --flake .#${username}@${domain}) && exec zsh'';
+        ''(cd ~/.config/home-manager/ && vi flake.nix && home-manager switch) && exec zsh'';
       cat = "bat";
     };
   };
