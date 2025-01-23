@@ -87,17 +87,23 @@
         web-devicons.enable = true;
         lualine = {
           enable = true;
-          settings.sections = {
-            lualine_b = [
-              {
-                __unkeyed = "branch";
-                icon = "";
-              }
-              "diff"
-              "diagnostics"
-            ];
-            lualine_c = [ ];
-            lualine_x = [ "filetype" ];
+          settings = {
+            options = {
+              section_separators = "";
+              component_separators = "";
+            };
+            sections = {
+              lualine_b = [
+                {
+                  __unkeyed = "branch";
+                  icon = "";
+                }
+                "diff"
+                "diagnostics"
+              ];
+              lualine_c = [ ];
+              lualine_x = [ "filetype" ];
+            };
           };
         };
         noice.enable = true;
