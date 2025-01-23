@@ -24,6 +24,10 @@ rec {
     jetbrains-mono
     iosevka-comfy.comfy-wide-fixed
     (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+    # IDE
+    jetbrains.idea-community
+    # ZSA Keyboard
+    keymapp
   ];
 
   # Global environment
