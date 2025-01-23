@@ -167,6 +167,15 @@
             desc = "exit";
           };
         }
+        {
+          action = ":w<cr>";
+          key = "<leader>ws";
+          mode = "n";
+          options = {
+            silent = true;
+            desc = "save buffer";
+          };
+        }
         # Custom
         {
           action = ":let g:autoformat=!g:autoformat<cr>";
@@ -254,7 +263,7 @@
         {
           callback = helpers.mkRaw ''
             function(args)
-              vim.keymap.set('n', '<leader>lrd', '<cmd>RustLsp openDocs<cr>', { buffer = args.buf })
+              vim.keymap.set('n', '<leader>llrd', '<cmd>RustLsp openDocs<cr>', { buffer = args.buf })
             end
           '';
           event = [
