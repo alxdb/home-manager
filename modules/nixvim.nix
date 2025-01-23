@@ -20,28 +20,22 @@
         };
       };
 
-      # Ad-hoc config
+      # Extra Config
       extraPackages = with pkgs; [
         neovim-remote
         ripgrep # for Telescope live_grep
         nixfmt-rfc-style # nix formatter (not installed by default)
-        haskell-language-server
-      ];
-
-      extraPlugins = with pkgs.vimPlugins; [
-        overseer-nvim
-        haskell-tools-nvim
-        nlsp-settings-nvim
       ];
 
       extraConfigLuaPre = ''
-        function autoformat_hook(client, bufnr)
+        -- LSP attach hook for format on save
+        function format_on_save_hook(client, bufnr)
           if client.supports_method('textDocument/formatting') then
             -- Format the current buffer on save
             vim.api.nvim_create_autocmd('BufWritePre', {
               buffer = bufnr,
               callback = function()
-                if vim.g.autoformat == 1 then
+                if vim.g.format_on_save == 1 then
                   vim.lsp.buf.format({bufnr = bufnr, id = client.id})
                 end
               end,
@@ -50,28 +44,11 @@
         end
       '';
 
-      extraConfigLua = ''
-        require("overseer").setup()
-      '';
-
       # Options & Globals
       globals = {
         mapleader = " ";
-        haskell_tools = {
-          tools = {
-            repl = {
-              handler = "toggleterm";
-            };
-          };
-          hls = {
-            on_attach = helpers.mkRaw ''
-              function(client, bufnr, ht) 
-                require("lsp-format").on_attach(client) 
-              end
-            '';
-          };
-        };
-        autoformat = 1;
+        # Toggle this value to (dis/en)able LSP format on save 
+        format_on_save = 1;
       };
 
       opts = {
@@ -88,201 +65,22 @@
         foldexpr = "nvim_treesitter#foldexpr()";
         foldenable = true;
         foldlevel = 9999;
+        # Evaluate exrc files
         exrc = true;
       };
 
       # Key Mappings
-      keymaps = [
-        # Text Manipulation
-        {
-          action = ":s/[a-z]\\@<=[A-Z]/_\\l\\0/g<cr>";
-          key = "<leader>tc";
-          mode = "v";
-          options = {
-            silent = true;
-            desc = "camel case to snake case";
-          };
-        }
-        {
-          action = ":s/_\\([a-z]\\)/\\u\\1/g<cr>";
-          key = "<leader>tc";
-          mode = "v";
-          options = {
-            silent = true;
-            desc = "snake case to camel case";
-          };
-        }
-        # Shortcuts
-        {
-          action = ":cd %:h<cr>";
-          key = "<leader>cd";
-          mode = "n";
-          options = {
-            silent = true;
-            desc = "change directory to current buffer";
-          };
-        }
-        {
-          action = ":bp<cr>";
-          key = "H";
-          mode = "n";
-          options = {
-            silent = true;
-            desc = "previous buffer";
-          };
-        }
-        {
-          action = ":bn<cr>";
-          key = "L";
-          mode = "n";
-          options = {
-            silent = true;
-            desc = "next buffer";
-          };
-        }
-        {
-          action = ":noh<cr>";
-          key = "<Esc>";
-          mode = "n";
-          options = {
-            silent = true;
-            desc = "clear highlight";
-          };
-        }
-        {
-          action = ":b#<cr>";
-          key = "<leader><tab>";
-          mode = "n";
-          options = {
-            silent = true;
-            desc = "swap buffer";
-          };
-        }
-        {
-          action = ":q<cr>";
-          key = "<leader>q";
-          mode = "n";
-          options = {
-            silent = true;
-            desc = "exit";
-          };
-        }
-        {
-          action = ":w<cr>";
-          key = "<leader>ws";
-          mode = "n";
-          options = {
-            silent = true;
-            desc = "save buffer";
-          };
-        }
-        # Custom
-        {
-          action = ":let g:autoformat=!g:autoformat<cr>";
-          key = "<leader>lf";
-          mode = "n";
-          options.desc = "toggle auto format";
-        }
-        # Commands
-        {
-          action = "<cmd>ZenMode<cr>";
-          key = "<leader>wz";
-          mode = "n";
-          options.desc = "toggle zen mode";
-        }
-        {
-          action = "<cmd>Neogit<cr>";
-          key = "<leader>gg";
-          mode = "n";
-          options.desc = "open neogit";
-        }
-        {
-          action = "<cmd>Neotree<cr>";
-          key = "<leader>ft";
-          mode = "n";
-          options.desc = "open neotree";
-        }
-        {
-          action = "<cmd>Gitsigns preview_hunk<cr>";
-          key = "<leader>gp";
-          mode = "n";
-          options.desc = "preview current hunk";
-        }
-        {
-          action = "<cmd>Gitsigns reset_hunk<cr>";
-          key = "<leader>gr";
-          mode = "n";
-          options.desc = "reset current hunk";
-        }
-        {
-          action = "<cmd>Bdelete<cr>";
-          key = "<leader>bd";
-          mode = "n";
-          options.desc = "delete buffer (keep windows)";
-        }
-        {
-          action = "<cmd>OverseerRun<cr>";
-          key = "<leader>tr";
-          mode = "n";
-          options.desc = "run Task";
-        }
-        {
-          action = "<cmd>OverseerToggle<cr>";
-          key = "<leader>tt";
-          mode = "n";
-          options.desc = "view Tasks";
-        }
-        {
-          action = "<cmd>OverseerLoadBundle<cr>";
-          key = "<leader>tl";
-          mode = "n";
-          options.desc = "load Task";
-        }
-        {
-          action = "<cmd>OverseerQuickAction<cr>";
-          key = "<leader>ta";
-          mode = "n";
-          options.desc = "task action";
-        }
-        {
-          action = "<cmd>ToggleTerm direction=vertical<cr>";
-          key = "<leader>\\v";
-          mode = "n";
-          options.desc = "toggleterm: vertical";
-        }
-        {
-          action = "<cmd>ToggleTerm direction=float<cr>";
-          key = "<leader>\\f";
-          mode = "n";
-          options.desc = "toggleterm: float";
-        }
-      ];
+      keymaps = [ ];
 
       # AutoCmd
-      autoCmd = [
-        {
-          callback = helpers.mkRaw ''
-            function(args)
-              vim.keymap.set('n', '<leader>llrd', '<cmd>RustLsp openDocs<cr>', { buffer = args.buf })
-            end
-          '';
-          event = [
-            "BufEnter"
-            "BufWinEnter"
-          ];
-          pattern = [
-            "*.rs"
-          ];
-        }
-      ];
+      autoCmd = [ ];
 
       plugins = {
         # editing
         sleuth.enable = true;
         vim-surround.enable = true;
-        autoclose.enable = true;
+        nvim-autopairs.enable = true;
         bufdelete.enable = true;
-        better-escape.enable = true;
         ts-autotag.enable = true;
         ts-comments.enable = true;
         # user interface
@@ -297,15 +95,10 @@
               }
               "diff"
               "diagnostics"
-              "overseer"
             ];
             lualine_c = [ ];
             lualine_x = [ "filetype" ];
           };
-        };
-        bufferline = {
-          enable = true;
-          settings.options.show_buffer_close_icons = false;
         };
         noice.enable = true;
         neo-tree = {
@@ -314,9 +107,17 @@
             groupEmptyDirs = true;
           };
         };
-        which-key.enable = true;
+        which-key = {
+          enable = true;
+          settings.spec = [
+            {
+              __unkeyed = "<leader>t";
+              group = "Telescope";
+              icon = " ";
+            }
+          ];
+        };
         zen-mode.enable = true;
-        diffview.enable = true;
         neogit = {
           enable = true;
           settings = {
@@ -341,23 +142,23 @@
             };
           };
           keymaps = {
-            "<leader>ff" = {
+            "<leader>tf" = {
               action = "git_files";
               options.desc = "telescope: git files";
             };
-            "<leader>fF" = {
+            "<leader>tF" = {
               action = "find_files";
               options.desc = "telescope: all files";
             };
-            "<leader>fg" = {
+            "<leader>tg" = {
               action = "live_grep";
               options.desc = "telescope: grep files";
             };
-            "<leader>bf" = {
+            "<leader>tb" = {
               action = "buffers";
               options.desc = "telescope: buffers";
             };
-            "<leader>cs" = {
+            "<leader>tc" = {
               action = "commands";
               options.desc = "telescope: commands";
             };
@@ -369,7 +170,7 @@
         toggleterm = {
           enable = true;
           settings = {
-            open_mapping = "[[<C-\\>]]";
+            open_mapping = "[[<C-/>]]";
             size = ''
               function(term)
                 if term.direction == "horizontal" then
@@ -459,7 +260,7 @@
               }
             ];
           };
-          onAttach = "autoformat_hook(client, bufnr)";
+          onAttach = "format_on_save_hook(client, bufnr)";
           servers = {
             nil_ls = {
               enable = true;
@@ -523,7 +324,7 @@
         none-ls = {
           enable = true;
           settings = {
-            on_attach = "autoformat_hook";
+            on_attach = "format_on_save_hook";
           };
           sources = {
             formatting = {

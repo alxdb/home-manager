@@ -32,10 +32,6 @@
       cat = "bat";
     };
   };
-  programs.starship = {
-    enable = true;
-    settings = (import ./starship.nix);
-  };
   programs.zoxide = {
     enable = true;
     options = [
