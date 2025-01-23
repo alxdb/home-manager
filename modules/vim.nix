@@ -70,7 +70,80 @@
       };
 
       # Key Mappings
-      keymaps = [ ];
+      keymaps = [
+        {
+          action = ":qa<cr>";
+          mode = "n";
+          key = "<leader>q";
+          options = {
+            silent = true;
+            desc = "Quit";
+          };
+        }
+        {
+          action = ":qa!<cr>";
+          mode = "n";
+          key = "<leader>Q";
+          options = {
+            silent = true;
+            desc = "Quit without saving";
+          };
+        }
+        {
+          action = ":b#<cr>";
+          mode = "n";
+          key = "<BS>";
+          options = {
+            silent = true;
+            desc = "Last used buffer";
+          };
+        }
+        {
+          action = "<cmd>Bdelete<cr>";
+          mode = "n";
+          key = "<leader>bd";
+          options = {
+            silent = true;
+            desc = "Delete buffer";
+          };
+        }
+        {
+          action = ":w<cr>";
+          mode = "n";
+          key = "<leader>bw";
+          options = {
+            silent = true;
+            desc = "Write buffer";
+          };
+        }
+        {
+          action = "<cmd>Neogit kind=floating<cr>";
+          mode = "n";
+          key = "<leader>og";
+          options = {
+            silent = true;
+            desc = "Git";
+          };
+        }
+        {
+          action = "<cmd>Neotree float<cr>";
+          mode = "n";
+          key = "<leader>of";
+          options = {
+            silent = true;
+            desc = "File Manager";
+          };
+        }
+        {
+          action = "<cmd>ToggleTerm direction=float<cr>";
+          mode = "n";
+          key = "<leader>ot";
+          options = {
+            silent = true;
+            desc = "Terminal";
+          };
+        }
+      ];
 
       # AutoCmd
       autoCmd = [ ];
@@ -117,14 +190,24 @@
           enable = true;
           settings.spec = [
             {
-              __unkeyed = "<leader>t";
-              group = "Telescope";
+              __unkeyed = "<leader>f";
+              group = "Find";
               icon = " ";
             }
             {
               __unkeyed = "<leader>l";
               group = "Language";
               icon = " ";
+            }
+            {
+              __unkeyed = "<leader>o";
+              group = "Open";
+              icon = "󰏋 ";
+            }
+            {
+              __unkeyed = "<leader>b";
+              group = "Buffer";
+              icon = " ";
             }
           ];
         };
@@ -153,23 +236,23 @@
             };
           };
           keymaps = {
-            "<leader>tf" = {
+            "<leader>ff" = {
               action = "git_files";
               options.desc = "telescope: git files";
             };
-            "<leader>tF" = {
+            "<leader>fF" = {
               action = "find_files";
               options.desc = "telescope: all files";
             };
-            "<leader>tg" = {
+            "<leader>fg" = {
               action = "live_grep";
               options.desc = "telescope: grep files";
             };
-            "<leader>tb" = {
+            "<leader>fb" = {
               action = "buffers";
               options.desc = "telescope: buffers";
             };
-            "<leader>tc" = {
+            "<leader>fc" = {
               action = "commands";
               options.desc = "telescope: commands";
             };
@@ -181,7 +264,7 @@
         toggleterm = {
           enable = true;
           settings = {
-            open_mapping = "[[<C-/>]]";
+            open_mapping = "[[<C-\\>]]";
             size = ''
               function(term)
                 if term.direction == "horizontal" then
@@ -349,7 +432,7 @@
               codespell = {
                 enable = true;
                 settings = {
-                  extra_args = [ "-L noice,shouldBe,crate" ];
+                  extra_args = [ "-L noice,shouldBe,crate,ot" ];
                 };
               };
             };
