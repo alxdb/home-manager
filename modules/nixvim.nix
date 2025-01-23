@@ -115,6 +115,11 @@
               group = "Telescope";
               icon = " ";
             }
+            {
+              __unkeyed = "<leader>l";
+              group = "Language";
+              icon = " ";
+            }
           ];
         };
         zen-mode.enable = true;

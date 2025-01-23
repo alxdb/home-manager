@@ -29,6 +29,11 @@
         ''(cd ~/.config/home-manager/ && vi flake.nix && home-manager switch) && exec zsh'';
       cat = "bat";
     };
+
+    prezto = {
+      enable = true;
+      prompt.theme = "pure";
+    };
   };
   programs.zoxide = {
     enable = true;
