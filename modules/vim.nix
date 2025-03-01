@@ -453,9 +453,9 @@
               "<C-Space>" = "cmp.mapping.complete()";
               "<CR>" = "cmp.mapping.confirm({ select = true })";
               "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+              "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
               "<C-n>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
               "<C-p>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
-              "<C-f>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
             };
             snippet.expand = ''
               function(args)
