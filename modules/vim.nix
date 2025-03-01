@@ -154,7 +154,7 @@
         vim-surround.enable = true;
         nvim-autopairs.enable = true;
         bufdelete.enable = true;
-        ts-autotag.enable = true;
+        ts-autotag.enable = true; # autoclose/autorename xml/html tags
         ts-comments.enable = true;
         # user interface
         web-devicons.enable = true;
