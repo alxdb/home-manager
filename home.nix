@@ -20,11 +20,9 @@ rec {
     wl-clipboard
     trashy
     # Fonts
-    input-fonts
-    jetbrains-mono
     iosevka-comfy.comfy-wide-fixed
     (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
-    # IDE
+    # IDEs
     jetbrains.idea-community
     # ZSA Keyboard
     keymapp
