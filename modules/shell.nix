@@ -25,8 +25,7 @@
 
     shellAliases = {
       gg = "nvim '+Neogit'";
-      hm = # sh
-        ''(cd ~/.config/home-manager/ && vi flake.nix && home-manager switch) && exec zsh'';
+      hm = ''(cd ~/.config/home-manager/ && vi flake.nix && home-manager switch) && exec zsh'';
       cat = "bat";
     };
 
@@ -73,15 +72,13 @@
     customPaneNavigationAndResize = true;
     reverseSplit = true;
     mouse = true;
-    extraConfig = # tmux
-      ''
-        set -ag terminal-overrides ",*:RGB"
-      '';
-    catppuccin.extraConfig = # tmux
-      ''
-        set -g @catppuccin_status_left_separator "█"
-        set -g @catppuccin_status_modules_right "session date_time"
-      '';
+    extraConfig = ''
+      set -ag terminal-overrides ",*:RGB"
+    '';
+    catppuccin.extraConfig = ''
+      set -g @catppuccin_status_left_separator "█"
+      set -g @catppuccin_status_modules_right "session date_time"
+    '';
   };
   programs.gh = {
     enable = true;
