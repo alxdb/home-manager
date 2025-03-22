@@ -11,6 +11,7 @@
     userSettings = {
       buffer_font_family = "Iosevka Comfy Wide Fixed";
       buffer_font_fallbacks = [ "Symbols Nerd Font Mono" ];
+      buffer_font_size = 12;
       ui_font_family = "Iosevka Comfy Wide Fixed";
       lsp = {
         rust-analyzer = {
@@ -34,6 +35,10 @@
       };
       vim_mode = true;
       load_direnv = "shell_hook";
+      tabs = {
+        "file_icons" = true;
+        "git_status" = true;
+      };
     };
   };
 }
