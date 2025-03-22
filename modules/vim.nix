@@ -47,7 +47,7 @@
       # Options & Globals
       globals = {
         mapleader = " ";
-        # Toggle this value to (dis/en)able LSP format on save 
+        # Toggle this value to (dis/en)able LSP format on save
         format_on_save = 1;
       };
 
@@ -114,6 +114,15 @@
           options = {
             silent = true;
             desc = "Write buffer";
+          };
+        }
+        {
+          action = "<cmd>ZenMode<cr>";
+          mode = "n";
+          key = "<C-w>z";
+          options = {
+            silent = true;
+            desc = "Zen Mode";
           };
         }
         {
@@ -395,7 +404,6 @@
               };
             };
             gopls.enable = true;
-            bufls.enable = true;
             wgsl_analyzer = {
               enable = true;
               package = null;

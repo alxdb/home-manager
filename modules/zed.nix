@@ -9,29 +9,26 @@
       "catpuccin"
     ];
     userSettings = {
-      theme = {
-        mode = "system";
-        dark = "Catpuccin Mocha";
-      };
-      node = {
-        path = lib.getExe pkgs.nodejs;
-        npm_path = lib.getExe' pkgs.nodejs "npm";
-      };
+      buffer_font_family = "Iosevka Comfy Wide Fixed";
+      buffer_font_fallbacks = [ "Symbols Nerd Font Mono" ];
+      ui_font_family = "Iosevka Comfy Wide Fixed";
       lsp = {
         rust-analyzer = {
           binary = {
             path_lookup = true;
           };
         };
-        nix = {
+        nil = {
           binary = {
-            path_lookup = true;
+            path = lib.getExe pkgs.nil;
+          };
+          settings = {
+            formatting.command = [ (lib.getExe' pkgs.nixfmt-rfc-style "nixfmt") ];
           };
         };
-        json-language-server = {
+        nixd = {
           binary = {
-            path = lib.getExe pkgs.nodePackages.vscode-json-languageserver;
-            arguments = "--stdio";
+            path = lib.getExe pkgs.nixd;
           };
         };
       };

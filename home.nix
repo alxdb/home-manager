@@ -21,7 +21,7 @@ rec {
     trashy
     # Fonts
     iosevka-comfy.comfy-wide-fixed
-    (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+    nerd-fonts.symbols-only
     # IDEs
     jetbrains.idea-community
     # ZSA Keyboard
@@ -31,13 +31,20 @@ rec {
   # Global environment
   home.sessionVariables = {
     GOPATH = "${home.homeDirectory}/.go";
+    SUDO_EDITOR = "nvim";
   };
 
-  # Catppuccin flavour 
+  # Catppuccin flavour
   catppuccin = {
     flavor = "mocha";
     accent = "lavender";
     enable = true;
+    tmux.extraConfig = ''
+      set -g @catppuccino-mocha "soft"
+      set -g @catppuccino-lavender "soft"
+      set -g @catppuccin_status_left_separator "█"
+      set -g @catppuccin_status_modules_right "session date_time"
+    '';
   };
 
   # Font configuration
@@ -67,7 +74,7 @@ rec {
     };
     # https://github.com/nix-community/home-manager/issues/4149
     extraConfig = ''
-      symbol_map U+276F,U+276E JetBrains Mono
+      symbol_map U+276F,U+276E Iosevka Comfy Wide Fixed
     '';
   };
 

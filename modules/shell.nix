@@ -29,9 +29,22 @@
       cat = "bat";
     };
 
-    prezto = {
+    zplug = {
       enable = true;
-      prompt.theme = "pure";
+      plugins = [
+        {
+          name = "mafredri/zsh-async";
+          tags = [ "from:github" ];
+        }
+        {
+          name = "sindresorhus/pure";
+          tags = [
+            "from:github"
+            "as:theme"
+            "use:pure.zsh"
+          ];
+        }
+      ];
     };
   };
   programs.zoxide = {
@@ -74,10 +87,6 @@
     mouse = true;
     extraConfig = ''
       set -ag terminal-overrides ",*:RGB"
-    '';
-    catppuccin.extraConfig = ''
-      set -g @catppuccin_status_left_separator "█"
-      set -g @catppuccin_status_modules_right "session date_time"
     '';
   };
   programs.gh = {
