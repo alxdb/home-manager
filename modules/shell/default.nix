@@ -3,6 +3,9 @@
   ...
 }:
 {
+  home.packages = with pkgs; [
+    (writeShellScriptBin "hm" (builtins.readFile ./hm.sh))
+  ];
   programs.zsh = {
     enable = true;
     dotDir = ".config/zsh";
@@ -25,7 +28,7 @@
 
     shellAliases = {
       gg = "nvim '+Neogit'";
-      hm = ''(cd ~/.config/home-manager/ && vi flake.nix && home-manager switch) && exec zsh'';
+      hm = "~/.nix-profile/bin/hm && exec zsh";
       cat = "bat";
     };
 
