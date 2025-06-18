@@ -26,6 +26,8 @@ rec {
     jetbrains.idea-community
     # ZSA Keyboard
     keymapp
+    # For DRM apps
+    google-chrome
   ];
 
   # Global environment
@@ -46,6 +48,9 @@ rec {
       set -g @catppuccin_status_modules_right "session date_time"
     '';
   };
+
+  # https://github.com/catppuccin/nix/pull/553
+  catppuccin.mako.enable = false;
 
   # Font configuration
   fonts.fontconfig = {
@@ -91,7 +96,7 @@ rec {
       { id = "eimadpbcbfnmbkopoojfekhnkhdbieeh"; } # dark reader
       { id = "ghmbeldphafepmbegfdlkpapadhbakde"; } # proton pass
       { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; } # vimium
-      { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # ublock origin
+      { id = "ddkjiahejlhfcafbddmgiahcphecmpfh"; } # ublock origin lite
     ];
   };
 

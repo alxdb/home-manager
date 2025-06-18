@@ -33,7 +33,7 @@
         modules = [
           ./home.nix
           ./modules
-          catppuccin.homeManagerModules.catppuccin
+          catppuccin.homeModules.catppuccin
           nixvim.homeManagerModules.nixvim
         ];
       };
