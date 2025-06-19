@@ -28,6 +28,8 @@ rec {
     keymapp
     # For DRM apps
     google-chrome
+    # For futzing around with SMAC on Steam
+    steamtinkerlaunch
   ];
 
   # Global environment
