@@ -28,6 +28,8 @@ rec {
     keymapp
     # For DRM apps
     google-chrome
+    # For old games
+    lutris
   ];
 
   # Global environment
