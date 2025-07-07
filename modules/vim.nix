@@ -411,6 +411,7 @@
             hls = {
               enable = true;
               package = null;
+              installGhc = false;
             };
           };
         };
