@@ -27,23 +27,6 @@
         nixfmt-rfc-style # nix formatter (not installed by default)
       ];
 
-      extraConfigLuaPre = ''
-        -- LSP attach hook for format on save
-        function format_on_save_hook(client, bufnr)
-          if client.supports_method('textDocument/formatting') then
-            -- Format the current buffer on save
-            vim.api.nvim_create_autocmd('BufWritePre', {
-              buffer = bufnr,
-              callback = function()
-                if vim.g.format_on_save == 1 then
-                  vim.lsp.buf.format({bufnr = bufnr, id = client.id})
-                end
-              end,
-            })
-          end
-        end
-      '';
-
       # Options & Globals
       globals = {
         mapleader = " ";
@@ -157,6 +140,25 @@
       # AutoCmd
       autoCmd = [ ];
 
+      # LSP Settings
+      lsp = {
+        onAttach = # lua
+          ''
+            if client.supports_method('textDocument/formatting') then
+              -- Format the current buffer on save
+              vim.api.nvim_create_autocmd('BufWritePre', {
+                buffer = bufnr,
+                callback = function()
+                  if vim.g.format_on_save == 1 then
+                    vim.lsp.buf.format({bufnr = bufnr, id = client.id})
+                  end
+                end,
+              })
+            end
+          '';
+      };
+
+      # Plugins
       plugins = {
         # editing
         sleuth.enable = true;
@@ -363,7 +365,6 @@
               }
             ];
           };
-          onAttach = "format_on_save_hook(client, bufnr)";
           servers = {
             nil_ls = {
               enable = true;
