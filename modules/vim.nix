@@ -135,6 +135,24 @@
             desc = "Terminal";
           };
         }
+        {
+          action = "<cmd>OverseerRun<cr>";
+          mode = "n";
+          key = "<leader>rr";
+          options = {
+            silent = true;
+            desc = "Run a task";
+          };
+        }
+        {
+          action = "<cmd>OverseerToggle<cr>";
+          mode = "n";
+          key = "<leader>rt";
+          options = {
+            silent = true;
+            desc = "Toggle the overseer window";
+          };
+        }
       ];
 
       # AutoCmd
@@ -214,6 +232,11 @@
               __unkeyed = "<leader>o";
               group = "Open";
               icon = "󰏋 ";
+            }
+            {
+              __unkeyed = "<leader>r";
+              group = "Run";
+              icon = " ";
             }
             {
               __unkeyed = "<leader>b";
@@ -296,6 +319,7 @@
             haskell.enable = true;
           };
         };
+        overseer.enable = true;
         # language support
         treesitter = {
           enable = true;
@@ -484,6 +508,8 @@
             ];
           };
         };
+        lsp-lines.enable = true;
+        lsp-signature.enable = true;
       };
     };
 }
