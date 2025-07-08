@@ -153,6 +153,42 @@
             desc = "Toggle the overseer window";
           };
         }
+        {
+          action = "<cmd>DapNew<cr>";
+          mode = "n";
+          key = "<leader>dn";
+          options = {
+            silent = true;
+            desc = "New debug session";
+          };
+        }
+        {
+          action = "<cmd>DapToggleBreakpoint<cr>";
+          mode = "n";
+          key = "<leader>db";
+          options = {
+            silent = true;
+            desc = "Toggle breakpoint on line";
+          };
+        }
+        {
+          action = "<cmd>DapContinue<cr>";
+          mode = "n";
+          key = "<leader>dc";
+          options = {
+            silent = true;
+            desc = "Continue";
+          };
+        }
+        {
+          action = "<cmd>DapToggleRepl<cr>";
+          mode = "n";
+          key = "<leader>dr";
+          options = {
+            silent = true;
+            desc = "Toggle Repl";
+          };
+        }
       ];
 
       # AutoCmd
@@ -239,6 +275,11 @@
               icon = " ";
             }
             {
+              __unkeyed = "<leader>d";
+              group = "Debug";
+              icon = " ";
+            }
+            {
               __unkeyed = "<leader>b";
               group = "Buffer";
               icon = " ";
@@ -320,6 +361,7 @@
           };
         };
         overseer.enable = true;
+        dap.enable = true;
         # language support
         treesitter = {
           enable = true;
