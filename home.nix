@@ -23,7 +23,7 @@ rec {
     iosevka-comfy.comfy-wide-fixed
     nerd-fonts.symbols-only
     # IDEs
-    # jetbrains.idea-community
+    jetbrains.idea-community
     # ZSA Keyboard
     keymapp
     # For DRM apps
