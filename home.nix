@@ -30,6 +30,8 @@ rec {
     google-chrome
     # For old games
     lutris
+    # For music
+    bitwig-studio
   ];
 
   # Global environment
