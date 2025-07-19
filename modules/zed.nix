@@ -11,7 +11,7 @@
     userSettings = {
       buffer_font_family = "Iosevka Comfy Wide Fixed";
       buffer_font_fallbacks = [ "Symbols Nerd Font Mono" ];
-      buffer_font_size = 12;
+      buffer_font_size = 14;
       ui_font_family = "Iosevka Comfy Wide Fixed";
       lsp = {
         rust-analyzer = {
