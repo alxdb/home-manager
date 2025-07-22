@@ -32,6 +32,8 @@ rec {
     lutris
     # For music
     bitwig-studio
+    # For messaging
+    signal-desktop
   ];
 
   # Global environment
