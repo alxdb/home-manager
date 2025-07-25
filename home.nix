@@ -30,8 +30,6 @@ rec {
     google-chrome
     # For old games
     lutris
-    # For music
-    bitwig-studio
     # For messaging
     signal-desktop
   ];
