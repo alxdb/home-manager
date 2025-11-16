@@ -24,6 +24,7 @@ rec {
     nerd-fonts.symbols-only
     # IDEs
     # jetbrains.idea-community
+    jetbrains.clion
     # ZSA Keyboard
     keymapp
     # For DRM apps
