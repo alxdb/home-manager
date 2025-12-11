@@ -554,4 +554,13 @@
         lsp-signature.enable = true;
       };
     };
+  xdg.configFile."nvim/after/queries/cpp/highlights.scm".text = ''
+    ; extends
+
+    [
+      "import"
+      "export"
+      "module"
+    ] @keyword
+  '';
 }
