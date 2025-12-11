@@ -34,7 +34,7 @@
           ./home.nix
           ./modules
           catppuccin.homeModules.catppuccin
-          nixvim.homeManagerModules.nixvim
+          nixvim.homeModules.nixvim
         ];
       };
     };

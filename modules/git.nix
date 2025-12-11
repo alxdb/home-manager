@@ -2,9 +2,9 @@
 {
   programs.git = {
     enable = true;
-    userName = "alxdb";
-    userEmail = "alxdb@pm.me";
-    extraConfig = {
+    settings = {
+      user.name = "alxdb";
+      user.email = "alxdb@pm.me";
       init.defaultBranch = "main";
       diff.tool = "nvimdiff";
       safe.directory = "*";

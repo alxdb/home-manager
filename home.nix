@@ -106,7 +106,10 @@ rec {
   };
 
   # Use an ssh agent
-  programs.ssh.enable = true;
+  programs.ssh = {
+    enable = true;
+    enableDefaultConfig = false;
+  };
   services.ssh-agent.enable = true;
 
   # You should not change this value, even if you update Home Manager.

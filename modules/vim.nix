@@ -2,7 +2,7 @@
 {
   # TODO: upstream manual config
   programs.nixvim =
-    { helpers, ... }:
+    { lib, ... }:
     {
       enable = true;
 
@@ -248,7 +248,7 @@
         neo-tree = {
           enable = true;
           filesystem = {
-            groupEmptyDirs = true;
+            group_empty_dirs = true;
           };
         };
         which-key = {
@@ -417,7 +417,7 @@
             };
             extra = [
               {
-                action = helpers.mkRaw ''
+                action = lib.nixvim.mkRaw ''
                   function()
                     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
                   end
