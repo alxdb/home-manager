@@ -507,6 +507,10 @@
                 settings = ''{ filetypes = { "json", "yaml", "css", "html" } }'';
               };
               buf.enable = true;
+              clang_format = {
+                enable = true;
+                package = null;
+              };
             };
             diagnostics = {
               codespell = {
