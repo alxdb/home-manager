@@ -454,7 +454,7 @@
             };
             cmake.enable = true;
             clangd = {
-              enable = true;
+              enable = false;
               package = null;
               filetypes = [
                 "c"
