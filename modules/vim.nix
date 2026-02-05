@@ -7,14 +7,11 @@ in
     { lib, ... }:
     {
       enable = true;
-
-      # Command settings
       defaultEditor = true;
       vimdiffAlias = true;
       viAlias = true;
       vimAlias = true;
 
-      # Colorscheme
       colorschemes.catppuccin = {
         enable = true;
         settings = {
@@ -22,8 +19,6 @@ in
         };
       };
 
-      # Options & Globals
-      plugins.sleuth.enable = true; # Only related to tabstop options
       globals = {
         mapleader = " ";
       };
@@ -42,10 +37,14 @@ in
         foldlevel = 4;
       };
 
-      # Autocmds
+      keymaps = [
+        { mode = "n"; key = "gd"; action = "<C-]>"; }
+      ];
+
       autoCmd = [
         {
           event = "QuickFixCmdPost";
+          # copy (and replace) quickfix contents to diagnostics
           callback = helpers.mkRaw ''
             function()
               local ns = vim.api.nvim_create_namespace("quickfix")
@@ -76,18 +75,14 @@ in
         }
       ];
 
-      # Treesitter
+      plugins.sleuth.enable = true;
       plugins.treesitter = {
         enable = true;
         highlight.enable = true;
         indent.enable = true;
         folding.enable = true;
       };
-
-      # Which Key
       plugins.which-key.enable = true;
-
-      # Lualine
       plugins.lualine.enable = true;
     };
   xdg.configFile."nvim/after/queries/cpp/highlights.scm".text = ''
