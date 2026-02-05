@@ -44,6 +44,7 @@ in
 
       # Autocmds
       autoCmd = [
+        {
           event = "QuickFixCmdPost";
           callback = helpers.mkRaw ''
             function()
