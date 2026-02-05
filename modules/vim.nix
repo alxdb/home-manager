@@ -19,13 +19,6 @@
         };
       };
 
-      # Extra Config
-      extraPackages = with pkgs; [
-        neovim-remote
-        ripgrep # for Telescope live_grep
-        nixfmt-rfc-style # nix formatter (not installed by default)
-      ];
-
       # Options & Globals
       globals = {
         mapleader = " ";
