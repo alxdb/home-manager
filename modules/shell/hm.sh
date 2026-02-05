@@ -8,6 +8,7 @@ nvim home.nix
 
 if [[ `git status --porcelain` ]]; then
   git add -i
+  git commit
   if [[ `git status --porcelain` ]]; then
     read -p "Apply uncommitted changes? " apply_uncommitted_changes
     case $apply_uncommitted_changes in
