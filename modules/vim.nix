@@ -31,6 +31,16 @@
         mapleader = " ";
       };
 
+      # Treesitter
+      plugins.treesitter = {
+        enable = true;
+        highlight.enable = true;
+        indent.enable = true;
+        folding.enable = true;
+      };
+
+      # Options
+      plugins.sleuth.enable = true; # Only related to tabstop options
       opts = {
         number = true;
         signcolumn = "number";
@@ -40,13 +50,10 @@
         expandtab = true;
         # Global statusbar
         laststatus = 3;
-        # Treesitter folds
-        foldmethod = "expr";
-        foldexpr = "nvim_treesitter#foldexpr()";
-        foldenable = true;
-        foldlevel = 9999;
         # Evaluate exrc files
         exrc = true;
+        # Folding options
+        foldlevel = 2;
       };
     };
   xdg.configFile."nvim/after/queries/cpp/highlights.scm".text = ''
