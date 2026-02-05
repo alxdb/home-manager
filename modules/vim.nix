@@ -39,7 +39,7 @@ in
         # Evaluate exrc files
         exrc = true;
         # Folding options
-        foldlevel = 2;
+        foldlevel = 4;
       };
 
       # Autocmds
@@ -48,10 +48,11 @@ in
           event = "QuickFixCmdPost";
           callback = helpers.mkRaw ''
             function()
-              local qflist = vim.fn.getqflist()
               local ns = vim.api.nvim_create_namespace("quickfix")
+              vim.diagnostic.reset(ns)
               local buf_diagnostics = {}
               
+              local qflist = vim.fn.getqflist()
               for _, item in ipairs(qflist) do
                 local bufnr = item.bufnr
                 if bufnr > 0 then
@@ -71,8 +72,8 @@ in
                 vim.diagnostic.set(ns, bufnr, diags)
               end
             end
-          ''
-        };
+          '';
+        }
       ];
 
       # Treesitter
