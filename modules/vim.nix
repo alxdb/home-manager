@@ -480,6 +480,7 @@
               package = null;
               installGhc = false;
             };
+            ttags.enable = true;
           };
         };
         # Extra language plugins
