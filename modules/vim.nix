@@ -72,7 +72,7 @@ in
               end
             end
           ''
-        }
+        };
       ];
 
       # Treesitter
