@@ -39,6 +39,12 @@
         folding.enable = true;
       };
 
+      # Which Key
+      plugins.which-key.enable = true;
+
+      # Lualine
+      plugins.lualine.enable = true;
+
       # Options
       plugins.sleuth.enable = true; # Only related to tabstop options
       opts = {
