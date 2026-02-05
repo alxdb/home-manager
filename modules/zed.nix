@@ -24,7 +24,7 @@
             path = lib.getExe pkgs.nil;
           };
           settings = {
-            formatting.command = [ (lib.getExe' pkgs.nixfmt-rfc-style "nixfmt") ];
+            formatting.command = [ (lib.getExe' pkgs.nixfmt "nixfmt") ];
           };
         };
         nixd = {

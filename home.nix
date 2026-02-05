@@ -9,10 +9,6 @@ rec {
 
   # Allow non FOSS programs
   nixpkgs.config.allowUnfree = true;
-  # Accept licenses for specific packages
-  nixpkgs.config = {
-    input-fonts.acceptLicense = true;
-  };
 
   # Global packages
   home.packages = with pkgs; [
@@ -24,15 +20,11 @@ rec {
     nerd-fonts.symbols-only
     # IDEs
     # jetbrains.idea-community
-    jetbrains.clion
+    # jetbrains.clion
     # ZSA Keyboard
     keymapp
     # For DRM apps
     google-chrome
-    # For old games
-    lutris
-    # For messaging
-    signal-desktop
   ];
 
   # Global environment
@@ -54,13 +46,8 @@ rec {
     '';
   };
 
-  # https://github.com/catppuccin/nix/pull/553
-  catppuccin.mako.enable = false;
-
   # Font configuration
-  fonts.fontconfig = {
-    enable = true;
-  };
+  fonts.fontconfig.enable = true;
 
   # user-dirs
   xdg.userDirs = {
