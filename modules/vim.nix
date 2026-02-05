@@ -1,4 +1,7 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
+let
+  helpers = config.lib.nixvim;
+in
 {
   programs.nixvim =
     { lib, ... }:
@@ -38,6 +41,38 @@
         # Folding options
         foldlevel = 2;
       };
+
+      # Autocmds
+      autoCmd = [
+          event = "QuickFixCmdPost";
+          callback = helpers.mkRaw ''
+            function()
+              local qflist = vim.fn.getqflist()
+              local ns = vim.api.nvim_create_namespace("quickfix")
+              local buf_diagnostics = {}
+              
+              for _, item in ipairs(qflist) do
+                local bufnr = item.bufnr
+                if bufnr > 0 then
+                  if not buf_diagnostics[bufnr] then
+                    buf_diagnostics[bufnr] = {}
+                  end
+                  table.insert(buf_diagnostics[bufnr], {
+                    lnum = item.lnum - 1,
+                    col = item.col - 1,
+                    message = item.text,
+                    severity = vim.diagnostic.severity.ERROR,
+                  })
+                end
+              end
+              
+              for bufnr, diags in pairs(buf_diagnostics) do
+                vim.diagnostic.set(ns, bufnr, diags)
+              end
+            end
+          ''
+        }
+      ];
 
       # Treesitter
       plugins.treesitter = {
