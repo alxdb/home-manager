@@ -76,6 +76,8 @@ in
       ];
 
       plugins.sleuth.enable = true;
+      plugins.vim-surround.enable = true;
+      plugins.nvim-autopairs.enable = true;
       plugins.treesitter = {
         enable = true;
         highlight.enable = true;
