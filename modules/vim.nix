@@ -77,12 +77,12 @@ in
         {
           event = "BufWinLeave";
           pattern = [ "*" ];
-          command = "mkview";
+          command = "if &buftype == '' | mkview | endif";
         }
         {
           event = [ "BufWinEnter" ];
           pattern = [ "*" ];
-          command = "silent! loadview";
+          command = "if empty(&buftype) | silent! loadview | endif";
         }
       ];
 
