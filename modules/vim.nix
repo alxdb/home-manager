@@ -142,6 +142,9 @@ in
 
       plugins.lsp = {
         enable = true;
+        keymaps.lspBuf = {
+          "gw" = "format";
+        };
         servers = {
           nixd.enable = true;
           rust_analyzer = {
