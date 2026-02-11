@@ -39,10 +39,8 @@ rec {
     accent = "lavender";
     enable = true;
     tmux.extraConfig = ''
-      set -g @catppuccino-mocha "soft"
-      set -g @catppuccino-lavender "soft"
-      set -g @catppuccin_status_left_separator "█"
       set -g @catppuccin_status_modules_right "session date_time"
+      set -g @catppuccin_window_status_style "rounded"
     '';
   };
 
