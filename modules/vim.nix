@@ -96,8 +96,10 @@ in
         folding.enable = true;
       };
       plugins.which-key.enable = true;
+      plugins.web-devicons.enable = true;
       plugins.lualine = {
         enable = true;
+        disableDefaultConfig = true;
         settings = {
           options = {
             theme = "catppuccin";
@@ -119,8 +121,18 @@ in
               "diff"
               "diagnostics"
             ];
-            lualine_c = [ ];
-            lualine_x = [ "filetype" ];
+            lualine_c = helpers.mkRaw "{}";
+            lualine_x = [
+              {
+                __unkeyed = "filename";
+                path = 1;
+                shorting_target = 40;
+              }
+              {
+                __unkeyed = "filetype";
+                icon_only = true;
+              }
+            ];
           };
         };
       };
