@@ -1,10 +1,10 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 let
   helpers = config.lib.nixvim;
 in
 {
   programs.nixvim =
-    { lib, ... }:
+    { ... }:
     {
       enable = true;
       defaultEditor = true;
