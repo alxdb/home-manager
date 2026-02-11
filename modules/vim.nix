@@ -156,7 +156,7 @@ in
             enable = true;
             installCargo = false;
             installRustc = false;
-          }
+          };
         };
       };
     };
