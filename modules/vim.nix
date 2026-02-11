@@ -73,6 +73,17 @@ in
             end
           '';
         }
+        # Remember fold configurations
+        {
+          event = "BufWinLeave";
+          pattern = [ "*" ];
+          command = "mkview";
+        }
+        {
+          event = [ "BufWinEnter" ];
+          pattern = [ "*" ];
+          command = "silent! loadview";
+        }
       ];
 
       plugins.sleuth.enable = true;
