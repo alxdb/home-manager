@@ -144,7 +144,7 @@ in
         enable = true;
         servers = {
           nixd.enable = true;
-        }
+        };
       };
     };
   xdg.configFile."nvim/after/queries/cpp/highlights.scm".text = ''
