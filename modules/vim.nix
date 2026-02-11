@@ -106,8 +106,8 @@ in
               right = "";
             };
             component_separators = {
-              left = "";
-              right = "";
+              left = "|";
+              right = "|";
             };
           };
           sections = {
