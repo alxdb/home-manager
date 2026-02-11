@@ -139,6 +139,8 @@ in
           };
         };
       };
+
+      plugins.lsp.enable = true;
     };
   xdg.configFile."nvim/after/queries/cpp/highlights.scm".text = ''
     ; extends
