@@ -140,7 +140,12 @@ in
         };
       };
 
-      plugins.lsp.enable = true;
+      plugins.lsp = {
+        enable = true;
+        servers = {
+          nixd.enable = true;
+        }
+      };
     };
   xdg.configFile."nvim/after/queries/cpp/highlights.scm".text = ''
     ; extends
