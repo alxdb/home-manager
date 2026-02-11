@@ -85,7 +85,23 @@ in
         folding.enable = true;
       };
       plugins.which-key.enable = true;
-      plugins.lualine.enable = true;
+      plugins.lualine = {
+        enable = true;
+        settings = {
+          sections = {
+            lualine_b = [
+              {
+                __unkeyed = "branch";
+                icon = "";
+              }
+              "diff"
+              "diagnostics"
+            ];
+            lualine_c = [ ];
+            lualine_x = [ "filetype" ];
+          };
+        };
+      };
     };
   xdg.configFile."nvim/after/queries/cpp/highlights.scm".text = ''
     ; extends
