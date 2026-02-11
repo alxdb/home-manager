@@ -142,6 +142,14 @@ in
 
       plugins.lsp = {
         enable = true;
+        keymaps = {
+          lspBuf = {
+            gq = "format";
+            gd = "definition";
+            K = "hover";
+            gr = "references";
+          };
+        };
         servers = {
           nixd.enable = true;
         };
