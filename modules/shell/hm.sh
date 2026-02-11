@@ -7,7 +7,7 @@ trap 'popd > /dev/null' EXIT
 nvim home.nix
 
 if [[ `git status --porcelain` ]]; then
-  git add -i
+  git add -p
   git commit
   if [[ `git status --porcelain` ]]; then
     read -p "Apply uncommitted changes? " apply_uncommitted_changes
